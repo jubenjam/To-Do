@@ -27,7 +27,7 @@ function MyApp() {
 
     async function removeUser (index) {
         try {
-            const response = await axios.delete('http://localhost:5000/users/'.concat(characters[index]['_id']));
+            const response = await axios.delete('http://localhost:5005/users/'.concat(characters[index]['_id']));
             return response;
         }
         catch (error) {
@@ -38,7 +38,7 @@ function MyApp() {
 
     async function fetchAll(){
         try {
-            const response = await axios.get('http://localhost:5000/users');
+            const response = await axios.get('http://localhost:5005/users');
             return response.data.users_list;     
         }
         catch (error){
@@ -57,7 +57,7 @@ function MyApp() {
      
     async function makePostCall(person){
         try {
-            const response = await axios.post('http://localhost:5000/users', person);
+            const response = await axios.post('http://localhost:5005/users', person);
             return response;
         }
         catch (error) {
