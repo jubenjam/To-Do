@@ -15,10 +15,11 @@ function TableHeader()  {
 
 function TableBody(props) {
     const rows = props.characterData.map((row, index) => {
+        var date = new Date(row.date.replace(/-/g, '/').replace(/T.+/, ''));
         return (
             <tr key={index}>
                 <td>{row.task}</td>
-                <td>{row.date}</td>
+                <td>{date.toDateString()}</td>
                 <td>{row.category}</td>
                 <td>
                     <button onClick={() => props.removeCharacter(index)}>Delete</button>

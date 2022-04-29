@@ -8,13 +8,9 @@ const TaskSchema = new mongoose.Schema(
             trim: true,
         },
         date: {
-            type: String,
+            type: Date,
             required: true,
             trim: true,
-            validate(value) {
-                if (value.length < 2)
-                    throw new Error("Invalid job, must be at least 2 characters.");
-            },
         },
         category: {
             type: String,

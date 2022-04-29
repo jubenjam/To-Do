@@ -41,7 +41,7 @@ function Form(props) {
                 <td>
                     <label htmlFor="date">Date</label>
                     <input
-                        type="text"
+                        type="date"
                         name="date"
                         id="date"
                         value={task.date}
