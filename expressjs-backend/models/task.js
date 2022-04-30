@@ -18,9 +18,9 @@ const TaskSchema = new mongoose.Schema(
             trim: true,
         },
     },
-    { collection: "users_list" }
+    { collection: "task_list" }
 );
 
-const Task = mongoose.model("User", TaskSchema);
+const Task = mongoose.model("Task", TaskSchema);
 
 module.exports = Task;

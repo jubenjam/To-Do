@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const taskModel = require("./user");
+const taskModel = require("./task");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -25,21 +25,21 @@ mongoose
   )
   .catch((error) => console.log(error));
 
-async function getUsers(category, date) {
+async function getTasks(category, date) {
   let result;
   if (category === undefined && date === undefined) {
     result = await taskModel.find();
   } else if (category && !date) {
-    result = await findUserByCategory(category);
+    result = await findTaskByCategory(category);
   } else if (date && !category) {
-    result = await findUserByJob(date);
+    result = await findTaskByDate(date);
   } else{
-    result = await findUserByNameAndJob(category, date);
+    result = await findTaskByCategoryAndDate(category, date);
   }
   return result;
 }
 
-async function findUserById(id) {
+async function findTaskById(id) {
   try {
     return await taskModel.findById(id);
   } catch (error) {
@@ -48,7 +48,7 @@ async function findUserById(id) {
   }
 }
 
-async function deleteUserById(id) {
+async function deleteTaskById(id) {
   try {
     return await taskModel.findByIdAndDelete(id);
   } catch (error) {
@@ -57,30 +57,30 @@ async function deleteUserById(id) {
   }
 }
 
-async function addUser(user) {
+async function addTask(task) {
   try {
-    const userToAdd = new taskModel(user);
-    const savedUser = await userToAdd.save();
-    return savedUser;
+    const taskToAdd = new taskModel(task);
+    const savedTask = await taskToAdd.save();
+    return savedTask;
   } catch (error) {
     console.log(error);
     return false;
   }
 }
 
-async function findUserByCategory(category) {
+async function findTaskByCategory(category) {
   return await taskModel.find({ category: category });
 }
 
-async function findUserByJob(date) {
+async function findTaskByDate(date) {
   return await taskModel.find({ date: date });
 }
 
-async function findUserByNameAndJob(category, date) {
+async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
 }
 
-exports.deleteUserById = deleteUserById;
-exports.getUsers = getUsers;
-exports.findUserById = findUserById;
-exports.addUser = addUser;
+exports.deleteTaskById = deleteTaskById;
+exports.getTasks = getTasks;
+exports.findTaskById = findTaskById;
+exports.addTask = addTask;
