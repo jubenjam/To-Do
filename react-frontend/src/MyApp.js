@@ -27,7 +27,7 @@ function MyApp() {
 
     async function removeUser (index) {
         try {
-            const response = await axios.delete('http://localhost:5005/users/'.concat(characters[index]['_id']));
+            const response = await axios.delete('http://localhost:5005/tasks/'.concat(characters[index]['_id']));
             return response;
         }
         catch (error) {
@@ -38,8 +38,8 @@ function MyApp() {
 
     async function fetchAll(){
         try {
-            const response = await axios.get('http://localhost:5005/users');
-            return response.data.users_list;     
+            const response = await axios.get('http://localhost:5005/tasks');
+            return response.data.task_list;     
         }
         catch (error){
             //We're not handling errors. Just logging into the console.
@@ -57,7 +57,7 @@ function MyApp() {
      
     async function makePostCall(person){
         try {
-            const response = await axios.post('http://localhost:5005/users', person);
+            const response = await axios.post('http://localhost:5005/tasks', person);
             return response;
         }
         catch (error) {
@@ -68,8 +68,8 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Table characterData={characters} removeCharacter={removeOneCharacter} />
             <Form handleSubmit={updateList} />
+            <Table characterData={characters} removeCharacter={removeOneCharacter} />
         </div>
     )
 

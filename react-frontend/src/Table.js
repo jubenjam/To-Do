@@ -4,10 +4,10 @@ function TableHeader()  {
     return (
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Job</th>
-                <th>Remove</th>
+                <th>Task</th>
+                <th>Complete By</th>
+                <th>Category</th>
+                <th></th>
             </tr>
         </thead>
     );
@@ -15,11 +15,12 @@ function TableHeader()  {
 
 function TableBody(props) {
     const rows = props.characterData.map((row, index) => {
+        var date = new Date(row.date.replace(/-/g, '/').replace(/T.+/, ''));
         return (
             <tr key={index}>
-                <td>{row._id}</td>
-                <td>{row.name}</td>
-                <td>{row.job}</td>
+                <td>{row.task}</td>
+                <td>{date.toDateString()}</td>
+                <td>{row.category}</td>
                 <td>
                     <button onClick={() => props.removeCharacter(index)}>Delete</button>
                 </td>
