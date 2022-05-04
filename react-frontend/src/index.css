@@ -404,6 +404,13 @@ table {
   margin: 0 0 1.5rem 0;
 }
 
+img {
+  float: left;
+  padding: 2px;
+  width: 150px;
+}
+
+
 ul li ul {
   margin-bottom: 0;
 }
@@ -1024,6 +1031,8 @@ caption {
   color: #ababab;
 }
 
+
+
 .striped-table tbody tr:nth-child(odd) {
   background-color: #f8f8f8;
 }
@@ -1036,6 +1045,7 @@ caption {
   .contain-table {
     width: 100%;
   }
+
 }
 
 /*
