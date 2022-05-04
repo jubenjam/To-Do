@@ -15,6 +15,7 @@
     "react-bootstrap": "^2.3.1",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
+    "run-scripts": "^0.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

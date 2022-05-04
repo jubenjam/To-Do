@@ -20,6 +20,6 @@
     "prettier-eslint": "^14.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   }
 }
