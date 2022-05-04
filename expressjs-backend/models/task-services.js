@@ -20,7 +20,7 @@ mongoose
     // "mongodb://localhost:27017/users",
     {
       useNewUrlParser: true, //useFindAndModify: false,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     }
   )
   .catch((error) => console.log(error));
@@ -33,7 +33,7 @@ async function getTasks(category, date) {
     result = await findTaskByCategory(category);
   } else if (date && !category) {
     result = await findTaskByDate(date);
-  } else{
+  } else {
     result = await findTaskByCategoryAndDate(category, date);
   }
   return result;
