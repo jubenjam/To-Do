@@ -67,6 +67,16 @@ async function addTask(task) {
     return false;
   }
 }
+ 
+async function editTask(task, id) {
+  try {
+    return await taskModel.findByIdAndUpdate({_id: id}, {$set: task})
+    }
+  catch (error) {
+    console.log(error);
+    return false
+  }
+}
 
 async function findTaskByCategory(category) {
   return await taskModel.find({ category: category });
@@ -80,7 +90,9 @@ async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
 }
 
+
 exports.deleteTaskById = deleteTaskById;
 exports.getTasks = getTasks;
 exports.findTaskById = findTaskById;
 exports.addTask = addTask;
+exports.editTask= editTask;
