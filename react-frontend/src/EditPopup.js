@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +18,7 @@ function EditPopup(props) {
     <Modal show={true} onHide={props.handleClose}>
       <Modal.Header>
         <button
-          class="close"
+          className="close"
           data-dismiss="modal"
           aria-hidden="true"
           onClick={props.handleClose}>×</button>
@@ -56,9 +56,9 @@ function EditPopup(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <input class="button-editPopup" value="Edit Task" />
+        <input className="button-editPopup" value="Edit Task" />
         <input
-          class="button-editPopup"
+          className="button-editPopup"
           value="DELETE"
           onClick={() => {
             props.removeCharacter(props.selectedRow.index);

@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import EditPopup from './EditPopup.js'
+import {useState} from "react"
+import EditPopup from "./EditPopup.js"
 
 function TableHeader() {
   return (
@@ -32,7 +32,7 @@ function TableBody(props) {
     }
 
     const rows = props.characterData.map((row, index) => {
-      var date = new Date(row.date.replace(/-/g, '/').replace(/T.+/, ''));
+      var date = new Date(row.date.replace(/-/g, "/").replace(/T.+/, ""));
       return (
           <tr key={index}>
               <td>{row.task}</td>

@@ -1,3 +1,5 @@
+/* eslint-disable jest/require-top-level-describe */
+/* eslint-disable jest/prefer-expect-assertions */
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
