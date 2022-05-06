@@ -1,27 +1,27 @@
 {
   "parser": "@babel/eslint-parser",
   "settings": {
-      "react": {
-          "version": "detect"
-      }
+    "react": {
+      "version": "detect"
+    }
   },
   "env": {
-      "browser": true,
-      "es2021": true
+    "browser": true,
+    "es2021": true
   },
   "extends": [
-      "plugin:react/recommended",
-      "plugin:react/jsx-runtime",
-      "plugin:testing-library/react",
-      "plugin:jest/all"
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:testing-library/react",
+    "plugin:jest/all"
   ],
   "parserOptions": {
-      "sourceType": "module"
+    "sourceType": "module"
   },
   "rules": {
-      "quotes": ["warn", "double"],
-      "no-console": ["off"],
-      "no-undef": ["off"],
-      "react/prop-types": ["off"]
-  } 
+    "quotes": ["warn", "double"],
+    "no-console": ["off"],
+    "no-undef": ["off"],
+    "react/prop-types": ["off"]
+  }
 }

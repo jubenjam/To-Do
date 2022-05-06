@@ -1,18 +1,13 @@
-import {useState} from "react";
+import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 // import "bootstrap/dist/css/bootstrap.min.css";
 
-
 function EditPopup(props) {
-
-  const [task, setTask] = useState(
-    {
-        task: props.selectedRow.task,
-        date: props.selectedRow.date,
-        category: props.selectedRow.category,
-    }
-  );
-
+  const [task, setTask] = useState({
+    task: props.selectedRow.task,
+    date: props.selectedRow.date,
+    category: props.selectedRow.category
+  });
 
   return (
     <Modal show={true} onHide={props.handleClose}>
@@ -21,7 +16,10 @@ function EditPopup(props) {
           className="close"
           data-dismiss="modal"
           aria-hidden="true"
-          onClick={props.handleClose}>×</button>
+          onClick={props.handleClose}
+        >
+          ×
+        </button>
       </Modal.Header>
       <Modal.Body>
         <div>
@@ -31,7 +29,7 @@ function EditPopup(props) {
               type="text"
               name="task"
               id="task"
-              defaultValue = {task.task}
+              defaultValue={task.task}
               // onChange={handleChange}
             />
 
@@ -40,7 +38,7 @@ function EditPopup(props) {
               type="date"
               name="date"
               id="date"
-              defaultValue = {task.date}
+              defaultValue={task.date}
               // onChange={handleChange}
             />
 
@@ -49,7 +47,7 @@ function EditPopup(props) {
               type="text"
               name="category"
               id="category"
-              defaultValue = {task.category}
+              defaultValue={task.category}
               // onChange={handleChange}
             />
           </form>

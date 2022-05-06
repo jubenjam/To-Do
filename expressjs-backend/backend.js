@@ -56,13 +56,12 @@ app.delete("/tasks/:id", async (req, res) => {
   }
 });
 
-
-app.patch('/tasks/:id', async (req, res) => {
-    const id = req.params['id'];
-    const result = await taskServices.editTask(req.body, id);
-    if (result === undefined || result === null)
+app.patch("/tasks/:id", async (req, res) => {
+  const id = req.params["id"];
+  const result = await taskServices.editTask(req.body, id);
+  if (result === undefined || result === null)
     res.status(500).send("Resource not found");
-    else {
+  else {
     res.status(201).end();
-    }
+  }
 });

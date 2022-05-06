@@ -411,7 +411,6 @@ img {
   width: 150px;
 }
 
-
 ul li ul {
   margin-bottom: 0;
 }
@@ -1134,8 +1133,6 @@ caption {
   color: #ababab;
 }
 
-
-
 .striped-table tbody tr:nth-child(odd) {
   background-color: #f8f8f8;
 }
@@ -1148,7 +1145,6 @@ caption {
   .contain-table {
     width: 100%;
   }
-
 }
 
 /*
@@ -1158,14 +1154,15 @@ caption {
  * Layout
  */
 
- .button-editPopup {
+.button-editPopup {
   -webkit-appearance: none;
   border: 1px solid #0366ee;
   border-radius: 4px;
   background: #0366ee;
   color: #ffffff;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
   font-size: 1rem;
   text-transform: none;
   padding: 0.75rem 1.25rem;
@@ -1175,26 +1172,25 @@ caption {
   cursor: pointer;
   text-decoration: none;
   line-height: 1;
-  width : 100%;
+  width: 100%;
+}
 
- }
-
- .button-editPopup:hover {
+.button-editPopup:hover {
   border: 1px solid #0250bc;
   background: #0250bc;
   color: #ffffff;
   text-decoration: none;
 }
 
-.button-editPopup:focus, .button-editPopup:active {
+.button-editPopup:focus,
+.button-editPopup:active {
   border: 1px solid #0250bc;
   background: #0250bc;
   color: #ffffff;
   text-decoration: none;
 }
 
-
- .modal-open {
+.modal-open {
   overflow: hidden;
 }
 .modal {
@@ -1224,19 +1220,19 @@ caption {
   -o-transform: translate(0, 0);
   transform: translate(0, 0);
 }
-.modal-open .modal { 
+.modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto;
 }
 .modal-dialog {
   position: relative;
-  top : 150px;
-  right : auto;
-  left : auto;
+  top: 150px;
+  right: auto;
+  left: auto;
   width: auto;
-  bottom : auto;
+  bottom: auto;
   margin: 10px;
-  display : block;
+  display: block;
 }
 .modal-content {
   position: relative;
@@ -1247,7 +1243,7 @@ caption {
   -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
   -webkit-background-clip: padding-box;
-          background-clip: padding-box;
+  background-clip: padding-box;
   outline: 0;
 }
 .modal-backdrop {
@@ -1258,7 +1254,7 @@ caption {
   left: 0;
   z-index: 1040;
   background-color: #000000;
-  margin : auto
+  margin: auto;
 }
 .modal-backdrop.fade {
   opacity: 0;
@@ -1272,7 +1268,7 @@ caption {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
   text-align: right;
-  height : 50px
+  height: 50px;
 }
 .modal-header .close {
   margin-top: -2px;
@@ -1314,7 +1310,7 @@ caption {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
-  opacity: .5;
+  opacity: 0.5;
 }
 button.close {
   -webkit-appearance: none;
@@ -1324,12 +1320,13 @@ button.close {
   border: 0;
   float: right;
 }
-.close:hover, .close:focus {
+.close:hover,
+.close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
   filter: alpha(opacity=50);
-  opacity: .5;
+  opacity: 0.5;
 }
 @media (min-width: 768px) {
   .modal-dialog {
