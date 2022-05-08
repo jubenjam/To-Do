@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function EditPopup(props) {
   const [task, setTask] = useState({
@@ -18,7 +18,7 @@ function EditPopup(props) {
           aria-hidden="true"
           onClick={props.handleClose}
         >
-          ×
+          × 
         </button>
       </Modal.Header>
       <Modal.Body>
