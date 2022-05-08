@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
 
 function EditPopup(props) {
 
@@ -13,6 +11,21 @@ function EditPopup(props) {
     }
   );
 
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    if (name === "date")
+      setTask({ task: task["task"], date: value, category: task["category"] });
+    else if (name === "category")
+      setTask({ task: task["task"], date: task["date"], category: value });
+    else
+      setTask({ task: value, date: task["date"], category: task["category"] });
+  }
+
+  function submitForm() {
+    props.handleEdit(task, props.selectedRow.index);
+    setTask({ task: task.task, date: task.date, category: task.category });
+  }
 
   return (
     <Modal show={true} onHide={props.handleClose}>
@@ -32,7 +45,7 @@ function EditPopup(props) {
               name="task"
               id="task"
               defaultValue = {task.task}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
 
             <label htmlFor="date">Date</label>
@@ -41,7 +54,7 @@ function EditPopup(props) {
               name="date"
               id="date"
               defaultValue = {task.date}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
 
             <label htmlFor="category">Category</label>
@@ -50,13 +63,15 @@ function EditPopup(props) {
               name="category"
               id="category"
               defaultValue = {task.category}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
           </form>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <input class="button-editPopup" value="Edit Task" />
+        <button class="button-editPopup" onClick= {function(event) {
+         props.setShow(false); submitForm();}
+        }>Edit Task</button>
         <input
           class="button-editPopup"
           value="DELETE"
