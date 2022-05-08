@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Table from "./Table";
 import Form from "./Form";
+import FilterDropDown from "./FilterDropDown";
 import axios from "axios";
 
 function MyApp() {
@@ -9,6 +10,14 @@ function MyApp() {
   useEffect(() => {
     fetchAll().then((result) => {
       if (result) setCharacters(result);
+    });
+  }, []);
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories().then((result) => {
+      if (result) setCategories(result);
     });
   }, []);
 
@@ -46,6 +55,35 @@ function MyApp() {
     }
   }
 
+  async function setTasksbyCategory(category) {
+    try {
+      if (category === "All") {
+        const response = await axios.get("http://localhost:5005/tasks");
+        setCharacters(response.data.task_list);
+      } else {
+        console.log("http://localhost:5005/tasks?category=".concat(category));
+        const response = await axios.get(
+          "http://localhost:5005/tasks?category=".concat(category)
+        );
+        setCharacters(response.data.task_list);
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+
+  async function fetchCategories() {
+    try {
+      const response = await axios.get("http://localhost:5005/categories");
+      return response.data.category_list;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   function updateList(person) {
     makePostCall(person).then((result) => {
       if (result && result.status === 201)
@@ -66,6 +104,11 @@ function MyApp() {
   return (
     <div className="container">
       <Form handleSubmit={updateList} />
+      <FilterDropDown
+        characterData={characters}
+        categories={categories}
+        setTasksbyCategory={setTasksbyCategory}
+      />
       <Table characterData={characters} removeCharacter={removeOneCharacter} />
     </div>
   );

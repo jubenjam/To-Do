@@ -29,6 +29,8 @@ app.get("/tasks", async (req, res) => {
   }
 });
 
+
+
 app.get("/tasks/:id", async (req, res) => {
   const id = req.params["id"];
   const result = await taskServices.findTaskById(id);
@@ -36,6 +38,17 @@ app.get("/tasks/:id", async (req, res) => {
     res.status(404).send("Resource not found.");
   else {
     res.send({ task_list: result });
+  }
+});
+
+
+app.get("/categories", async (req, res) => {
+  try {
+    const result = await taskServices.getCategories();
+    res.send({ category_list: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
   }
 });
 
