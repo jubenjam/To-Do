@@ -31,7 +31,7 @@ function EditPopup(props) {
     <Modal show={true} onHide={props.handleClose}>
       <Modal.Header>
         <button
-          class="close"
+          className="close"
           data-dismiss="modal"
           aria-hidden="true"
           onClick={props.handleClose}>×</button>
@@ -69,11 +69,11 @@ function EditPopup(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button class="button-editPopup" onClick= {function(event) {
+        <button className="button-editPopup" onClick= {function(event) {
          props.setShow(false); submitForm();}
         }>Edit Task</button>
         <input
-          class="button-editPopup"
+          className="button-editPopup"
           value="DELETE"
           onClick={() => {
             props.removeCharacter(props.selectedRow.index);
