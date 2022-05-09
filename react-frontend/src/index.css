@@ -1156,10 +1156,10 @@ caption {
 
 .button-editPopup {
   -webkit-appearance: none;
-  border: 1px solid #0366ee;
+  border: 1px solid #ffe66d;
   border-radius: 4px;
-  background: #0366ee;
-  color: #ffffff;
+  background: #ffe66d;
+  color: #999999;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
     Arial, sans-serif;
@@ -1176,16 +1176,16 @@ caption {
 }
 
 .button-editPopup:hover {
-  border: 1px solid #0250bc;
-  background: #0250bc;
+  border: 1px solid #ffe66d;
+  background: #ffe66d;
   color: #ffffff;
   text-decoration: none;
 }
 
 .button-editPopup:focus,
 .button-editPopup:active {
-  border: 1px solid #0250bc;
-  background: #0250bc;
+  border: 1px solid #ffe66d;
+  background: #ffe66d;
   color: #ffffff;
   text-decoration: none;
 }
