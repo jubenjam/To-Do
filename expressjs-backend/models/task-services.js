@@ -89,8 +89,16 @@ async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
 }
 
+async function completeTask(id, completed) {
+  return await taskModel.findByIdAndUpdate(
+    { _id: id },
+    { completed: completed }
+  );
+}
+
 exports.deleteTaskById = deleteTaskById;
 exports.getTasks = getTasks;
 exports.findTaskById = findTaskById;
 exports.addTask = addTask;
 exports.editTask = editTask;
+exports.completeTask = completeTask;

@@ -65,3 +65,14 @@ app.patch("/tasks/:id", async (req, res) => {
     res.status(201).end();
   }
 });
+
+app.patch("/completed/:id/:completed", async (req, res) => {
+  const id = req.params["id"];
+  const completed = req.params["completed"];
+  const result = await taskServices.completeTask(id, completed);
+  if (result === undefined || result === null)
+    res.status(500).send("Resource not found");
+  else {
+    res.status(201).end();
+  }
+});

@@ -6,8 +6,11 @@ function EditPopup(props) {
   const [task, setTask] = useState({
     task: props.selectedRow.task,
     date: props.selectedRow.date,
-    category: props.selectedRow.category
+    category: props.selectedRow.category,
+    completed: props.selectedRow.completed
   });
+
+  // let completeBtnVal = task.completed ? "Task Not Complete" : "Task Complete";
 
   return (
     <Modal show={true} onHide={props.handleClose}>
@@ -55,6 +58,19 @@ function EditPopup(props) {
       </Modal.Body>
       <Modal.Footer>
         <input className="button-editPopup" value="Edit Task" />
+        {/* <input
+          className="button-editPopup"
+          value={() => {
+            return completeBtnVal;
+          }}
+          onClick={() => {
+            if (task.completed) {
+              setTask({ completed: false });
+            } else {
+              setTask({ completed: true });
+            }
+          }}
+        /> */}
         <input
           className="button-editPopup"
           value="DELETE"

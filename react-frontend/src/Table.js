@@ -1,10 +1,12 @@
 import { useState } from "react";
 import EditPopup from "./EditPopup.js";
+import CheckForm from "./CheckForm";
 
 function TableHeader() {
   return (
     <thead>
       <tr>
+        <th></th>
         <th>Task</th>
         <th>Complete By</th>
         <th>Category</th>
@@ -37,10 +39,19 @@ function TableBody(props) {
     setShow(false);
   };
 
-  const rows = props.characterData.map((row, index) => {
+  var rows = props.characterData.map((row, index) => {
     var date = new Date(row.date.replace(/-/g, "/").replace(/T.+/, ""));
     return (
       <tr key={index}>
+        <td>
+          {
+            <CheckForm
+              handleSubmit={props.completeTask}
+              taskData={props.characterData}
+              index={index}
+            />
+          }
+        </td>
         <td>{row.task}</td>
         <td>{date.toDateString()}</td>
         <td>{row.category}</td>

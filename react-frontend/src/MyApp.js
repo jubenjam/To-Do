@@ -63,10 +63,33 @@ function MyApp() {
     }
   }
 
+  async function completeTask(index, complete) {
+    try {
+      const response = await axios.patch(
+        "http://localhost:5005/completed/" +
+          characters[index]["_id"] +
+          "/" +
+          complete
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  function completeOneTask(index, complete) {
+    completeTask(index, complete);
+  }
+
   return (
     <div className="container">
       <Form handleSubmit={updateList} />
-      <Table characterData={characters} removeCharacter={removeOneCharacter} />
+      <Table
+        characterData={characters}
+        removeCharacter={removeOneCharacter}
+        completeTask={completeOneTask}
+      />
     </div>
   );
 }
