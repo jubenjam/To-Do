@@ -13,14 +13,6 @@ function MyApp() {
     });
   }, []);
 
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetchCategories().then((result) => {
-      if (result) setCategories(result);
-    });
-  }, []);
-
   function removeOneCharacter(index) {
     removeUser(index).then((result) => {
       if (result && result.status === 204) {
@@ -31,6 +23,14 @@ function MyApp() {
       }
     });
   }
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories().then((result) => {
+      if (result) setCategories(result);
+    });
+  }, []);
 
   async function removeUser(index) {
     try {
@@ -55,6 +55,23 @@ function MyApp() {
     }
   }
 
+  function updateList(person) {
+    makePostCall(person).then((result) => {
+      if (result && result.status === 201)
+        setCharacters([...characters, result.data]);
+    });
+  }
+
+  async function makePostCall(person) {
+    try {
+      const response = await axios.post("http://localhost:5005/tasks", person);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   async function setTasksbyCategory(category) {
     try {
       if (category === "All") {
@@ -73,7 +90,6 @@ function MyApp() {
     }
   }
 
-
   async function fetchCategories() {
     try {
       const response = await axios.get("http://localhost:5005/categories");
@@ -90,15 +106,27 @@ function MyApp() {
         setCharacters([...characters, result.data]);
     });
   }
-
-  async function makePostCall(person) {
+  async function makePatchCall(person, index) {
     try {
-      const response = await axios.post("http://localhost:5005/tasks", person);
+      const response = await axios.patch(
+        "http://localhost:5005/tasks/".concat(characters[index]["_id"]),
+        person
+      );
       return response;
     } catch (error) {
       console.log(error);
       return false;
     }
+  }
+
+  function editList(person, index) {
+    makePatchCall(person, index).then((result) => {
+      if (result && result.status === 201) {
+        let newChar = [...characters];
+        newChar[index] = person;
+        setCharacters(newChar);
+      }
+    });
   }
 
   return (
@@ -109,7 +137,11 @@ function MyApp() {
         categories={categories}
         setTasksbyCategory={setTasksbyCategory}
       />
-      <Table characterData={characters} removeCharacter={removeOneCharacter} />
+      <Table
+        characterData={characters}
+        removeCharacter={removeOneCharacter}
+        handleEdit={editList}
+      />
     </div>
   );
 }

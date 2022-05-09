@@ -29,8 +29,6 @@ app.get("/tasks", async (req, res) => {
   }
 });
 
-
-
 app.get("/tasks/:id", async (req, res) => {
   const id = req.params["id"];
   const result = await taskServices.findTaskById(id);
@@ -40,7 +38,6 @@ app.get("/tasks/:id", async (req, res) => {
     res.send({ task_list: result });
   }
 });
-
 
 app.get("/categories", async (req, res) => {
   try {

@@ -58,6 +58,7 @@ function TableBody(props) {
               selectedRow={selected}
               removeCharacter={props.removeCharacter}
               setShow={setShow}
+              handleEdit={props.handleEdit}
             />
           )}
         </td>
@@ -74,6 +75,7 @@ function Table(props) {
       <TableBody
         characterData={props.characterData}
         removeCharacter={props.removeCharacter}
+        handleEdit={props.handleEdit}
       />
     </table>
   );
