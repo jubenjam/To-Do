@@ -55,13 +55,6 @@ function MyApp() {
     }
   }
 
-  function updateList(person) {
-    makePostCall(person).then((result) => {
-      if (result && result.status === 201)
-        setCharacters([...characters, result.data]);
-    });
-  }
-
   async function makePostCall(person) {
     try {
       const response = await axios.post("http://localhost:5005/tasks", person);
@@ -106,6 +99,7 @@ function MyApp() {
         setCharacters([...characters, result.data]);
     });
   }
+
   async function makePatchCall(person, index) {
     try {
       const response = await axios.patch(

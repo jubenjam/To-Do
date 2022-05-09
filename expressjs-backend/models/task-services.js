@@ -39,15 +39,9 @@ async function getTasks(category, date) {
   return result;
 }
 
-
-
 async function getCategories() {
   return await taskModel.distinct("category");
 }
-
-
-
-
 
 async function findTaskById(id) {
   try {
@@ -98,11 +92,6 @@ async function findTaskByDate(date) {
 async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
 }
-
-
-
-
-
 
 exports.deleteTaskById = deleteTaskById;
 exports.getTasks = getTasks;
