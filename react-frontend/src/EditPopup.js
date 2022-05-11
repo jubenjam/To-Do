@@ -6,7 +6,8 @@ function EditPopup(props) {
   const [task, setTask] = useState({
     task: props.selectedRow.task,
     date: props.selectedRow.date,
-    category: props.selectedRow.category
+    category: props.selectedRow.category,
+    completed: props.selectedRow.completed
   });
 
   function handleChange(event) {

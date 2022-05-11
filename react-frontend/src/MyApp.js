@@ -123,6 +123,34 @@ function MyApp() {
     });
   }
 
+  function updateCheck(index, person) {
+    completeTask(index, person).then((result) => {
+      if (result && result.status === 201) {
+        let newChar = [...characters];
+        newChar[index]["completed"] = !newChar[index]["completed"];
+        setCharacters(newChar);
+      }
+    });
+  }
+
+  async function completeTask(index, complete) {
+    try {
+      complete.completed = !complete.completed;
+      const response = await axios.patch(
+        "http://localhost:5005/tasks/".concat(characters[index]["_id"]),
+        complete
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  // function completeOneTask(index, complete) {
+  //   completeTask(index, complete);
+  // }
+
   return (
     <div className="container">
       <Form handleSubmit={updateList} />
@@ -135,6 +163,7 @@ function MyApp() {
         characterData={characters}
         removeCharacter={removeOneCharacter}
         handleEdit={editList}
+        completeTask={updateCheck}
       />
     </div>
   );
