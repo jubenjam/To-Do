@@ -2,7 +2,6 @@ import { useState } from "react";
 
 function CheckForm(props) {
   const [complete, setComplete] = useState({
-    id: props.taskData[props.index]._id,
     completed: props.taskData[props.index].completed
   });
 
@@ -11,7 +10,7 @@ function CheckForm(props) {
       completed: document.querySelector('input[id="c' + props.index + '"]')
         .checked
     });
-    props.handleSubmit(props.index, complete.completed);
+    props.completeTask(props.index, complete);
   }
 
   return (
@@ -20,9 +19,8 @@ function CheckForm(props) {
         type="checkbox"
         name="cx"
         id={"c" + props.index}
-        value={true}
-        onClick={handleCheck}
-        checked={complete.completed}
+        onChange={handleCheck}
+        defaultChecked={complete.completed}
       />
     </form>
   );

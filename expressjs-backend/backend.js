@@ -66,10 +66,11 @@ app.patch("/tasks/:id", async (req, res) => {
   }
 });
 
-app.patch("/completed/:id/:completed", async (req, res) => {
+app.patch("/completed/:id", async (req, res) => {
   const id = req.params["id"];
-  const completed = req.params["completed"];
-  const result = await taskServices.completeTask(id, completed);
+  const completed = req.body;
+  completed.completed = !completed.completed;
+  const result = await taskServices.editTask(completed, id);
   if (result === undefined || result === null)
     res.status(500).send("Resource not found");
   else {

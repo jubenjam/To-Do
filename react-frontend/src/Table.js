@@ -46,7 +46,7 @@ function TableBody(props) {
         <td>
           {
             <CheckForm
-              handleSubmit={props.completeTask}
+              completeTask={props.completeTask}
               taskData={props.characterData}
               index={index}
             />
@@ -85,6 +85,7 @@ function Table(props) {
       <TableBody
         characterData={props.characterData}
         removeCharacter={props.removeCharacter}
+        completeTask={props.completeTask}
       />
     </table>
   );

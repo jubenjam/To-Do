@@ -63,13 +63,21 @@ function MyApp() {
     }
   }
 
+  function updateCheck(index, person) {
+    completeTask(index, person).then((result) => {
+      if (result && result.status === 201) {
+        let newChar = [...characters];
+        newChar[index]["completed"] = !newChar[index]["completed"];
+        setCharacters(newChar);
+      }
+    });
+  }
+
   async function completeTask(index, complete) {
     try {
       const response = await axios.patch(
-        "http://localhost:5005/completed/" +
-          characters[index]["_id"] +
-          "/" +
-          complete
+        "http://localhost:5005/completed/".concat(characters[index]["_id"]),
+        complete
       );
       return response;
     } catch (error) {
@@ -78,9 +86,9 @@ function MyApp() {
     }
   }
 
-  function completeOneTask(index, complete) {
-    completeTask(index, complete);
-  }
+  // function completeOneTask(index, complete) {
+  //   completeTask(index, complete);
+  // }
 
   return (
     <div className="container">
@@ -88,7 +96,7 @@ function MyApp() {
       <Table
         characterData={characters}
         removeCharacter={removeOneCharacter}
-        completeTask={completeOneTask}
+        completeTask={updateCheck}
       />
     </div>
   );

@@ -90,10 +90,15 @@ async function findTaskByCategoryAndDate(category, date) {
 }
 
 async function completeTask(id, completed) {
-  return await taskModel.findByIdAndUpdate(
-    { _id: id },
-    { completed: completed }
-  );
+  try {
+    return await taskModel.findByIdAndUpdate(
+      { _id: id },
+      { completed: completed }
+    );
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
 }
 
 exports.deleteTaskById = deleteTaskById;
