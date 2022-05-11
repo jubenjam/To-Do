@@ -75,8 +75,9 @@ function MyApp() {
 
   async function completeTask(index, complete) {
     try {
+      complete.completed = !complete.completed;
       const response = await axios.patch(
-        "http://localhost:5005/completed/".concat(characters[index]["_id"]),
+        "http://localhost:5005/tasks/".concat(characters[index]["_id"]),
         complete
       );
       return response;
