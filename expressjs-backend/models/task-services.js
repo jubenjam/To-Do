@@ -39,6 +39,10 @@ async function getTasks(category, date) {
   return result;
 }
 
+async function getCategories() {
+  return await taskModel.distinct("category");
+}
+
 async function findTaskById(id) {
   try {
     return await taskModel.findById(id);
@@ -89,8 +93,22 @@ async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
 }
 
+async function completeTask(id, completed) {
+  try {
+    return await taskModel.findByIdAndUpdate(
+      { _id: id },
+      { completed: completed }
+    );
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 exports.deleteTaskById = deleteTaskById;
 exports.getTasks = getTasks;
 exports.findTaskById = findTaskById;
 exports.addTask = addTask;
 exports.editTask = editTask;
+exports.getCategories = getCategories;
+exports.completeTask = completeTask;

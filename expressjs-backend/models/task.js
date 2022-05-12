@@ -16,6 +16,11 @@ const TaskSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true
+    },
+    completed: {
+      type: Boolean,
+      required: true,
+      trim: true
     }
   },
   { collection: "task_list" }

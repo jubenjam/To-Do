@@ -39,6 +39,16 @@ app.get("/tasks/:id", async (req, res) => {
   }
 });
 
+app.get("/categories", async (req, res) => {
+  try {
+    const result = await taskServices.getCategories();
+    res.send({ category_list: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
+
 app.post("/tasks", async (req, res) => {
   const task = req.body;
   const savedTask = await taskServices.addTask(task);
