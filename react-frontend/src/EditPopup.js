@@ -80,8 +80,8 @@ function EditPopup(props) {
           Edit Task
         </button>
         <input
-          className="button-editPopup"
-          value="DELETE"
+          className="button-deletePopup"
+          value="Delete" 
           onClick={() => {
             props.removeCharacter(props.selectedRow.index);
             props.setShow(false);
