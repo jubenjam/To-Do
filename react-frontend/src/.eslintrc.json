@@ -13,15 +13,12 @@
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:testing-library/react",
-    "plugin:jest/all",
-    "prettier"
+    "plugin:jest/all"
   ],
-  "plugins": ["prettier"],
   "parserOptions": {
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": ["error", { "singleQuote": false }],
     "no-console": ["off"],
     "no-undef": ["off"],
     "react/prop-types": ["off"],
