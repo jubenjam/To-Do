@@ -1190,6 +1190,42 @@ caption {
   text-decoration: none;
 }
 
+.button-deletePopup {
+  -webkit-appearance: none;
+  border: 1px solid #FF6B6B;
+  border-radius: 4px;
+  background: #FF6B6B;
+  color: #ffffff;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+  font-size: 1rem;
+  text-transform: none;
+  padding: 0.75rem 1.25rem;
+  margin: 0 0 0.5rem 0;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  width: 100%;
+}
+
+.button-deletePopup:hover {
+  border: 1px solid #FF6B6B;
+  background: #FF6B6B;
+  color: #999999;
+  text-decoration: none;
+}
+
+.button-deletePopup:focus,
+.button-deletePopup:active {
+  border: 1px solid #FF6B6B;
+  background: #FF6B6B;
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .modal-open {
   overflow: hidden;
 }
