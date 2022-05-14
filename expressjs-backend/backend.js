@@ -97,11 +97,13 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
-  const name = req.query["name"];
+//localhost:5005/users/?username=dustint121&password=121498765aA
+http: app.get("/users", async (req, res) => {
+  const username = req.query["username"];
+  const password = req.query["password"];
   try {
-    const result = await userServices.getUsers(name);
-    res.send({ task_list: result });
+    const result = await userServices.getUsers(username, password);
+    res.send({ user_list: result });
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
