@@ -1,5 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+//import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route /*, Link*/
+} from "react-router-dom";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import MyApp from "./MyApp";
@@ -11,7 +15,7 @@ function URLpaths() {
         <Routes>
           <Route path="/" element={<LogIn />} />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/tasks"  element={<MyApp />} />
+          <Route path="/tasks" element={<MyApp />} />
         </Routes>
       </div>
     </Router>

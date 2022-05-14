@@ -1192,9 +1192,9 @@ caption {
 
 .button-deletePopup {
   -webkit-appearance: none;
-  border: 1px solid #FF6B6B;
+  border: 1px solid #ff6b6b;
   border-radius: 4px;
-  background: #FF6B6B;
+  background: #ff6b6b;
   color: #ffffff;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica,
@@ -1212,16 +1212,16 @@ caption {
 }
 
 .button-deletePopup:hover {
-  border: 1px solid #FF6B6B;
-  background: #FF6B6B;
+  border: 1px solid #ff6b6b;
+  background: #ff6b6b;
   color: #999999;
   text-decoration: none;
 }
 
 .button-deletePopup:focus,
 .button-deletePopup:active {
-  border: 1px solid #FF6B6B;
-  background: #FF6B6B;
+  border: 1px solid #ff6b6b;
+  background: #ff6b6b;
   color: #ffffff;
   text-decoration: none;
 }
