@@ -21,8 +21,9 @@ app.listen(port, () => {
 app.get("/tasks", async (req, res) => {
   const category = req.query["category"];
   const date = req.query["date"];
+  const username = req.query["username"];
   try {
-    const result = await taskServices.getTasks(category, date);
+    const result = await taskServices.getTasks(category, date, username);
     res.send({ task_list: result });
   } catch (error) {
     console.log(error);

@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function LogIn() {
+function LogIn(props) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
-  //localhost:5005/users/?username=dustint121&password=121498765aA
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/tasks`;
+    navigate(path);
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.get(
@@ -13,8 +19,11 @@ function LogIn() {
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 1) {
-      if (response.data.user_list[0].password === password) {
+      if (password === response.data.user_list[0].password) {
         console.log("Match found!");
+        console.log(username);
+        props.setUserName(username);
+        routeChange();
       } else {
         console.log("Wrong Password");
       }

@@ -4,8 +4,9 @@ import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
 import axios from "axios";
 
-function MyApp() {
+function MyApp(props) {
   const [characters, setCharacters] = useState([]);
+  const [username, setUserName] = useState(props.username);
 
   useEffect(() => {
     fetchAll().then((result) => {
@@ -46,7 +47,7 @@ function MyApp() {
 
   async function fetchAll() {
     try {
-      const response = await axios.get("http://localhost:5005/tasks");
+      const response = await axios.get("http://localhost:5005/tasks/?username=".concat(username));
       return response.data.task_list;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -68,7 +69,7 @@ function MyApp() {
   async function setTasksbyCategory(category) {
     try {
       if (category === "All") {
-        const response = await axios.get("http://localhost:5005/tasks");
+        const response = await axios.get("http://localhost:5005/tasks/?username=".concat(username));
         setCharacters(response.data.task_list);
       } else {
         console.log("http://localhost:5005/tasks?category=".concat(category));
@@ -147,13 +148,13 @@ function MyApp() {
     }
   }
 
-  // function completeOneTask(index, complete) {
-  //   completeTask(index, complete);
-  // }
+  function completeOneTask(index, complete) {
+    completeTask(index, complete);
+  }
 
   return (
     <div className="container">
-      <Form handleSubmit={updateList} />
+      <Form handleSubmit={updateList}/>
       <FilterDropDown
         characterData={characters}
         categories={categories}

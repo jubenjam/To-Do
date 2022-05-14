@@ -23,11 +23,11 @@ var conn = mongoose.createConnection(
   }
 );
 // .catch((error) => console.log(error));
-
-async function getTasks(category, date) {
+//http://localhost:5005/tasks/?username=dustint121
+async function getTasks(category, date, username) {
   let result;
-  if (category === undefined && date === undefined) {
-    result = await taskModel.find();
+  if (!category && !date) {
+    result = await taskModel.find({username: username});
   } else if (category && !date) {
     result = await findTaskByCategory(category);
   } else if (date && !category) {
@@ -123,6 +123,11 @@ const TaskSchema = new mongoose.Schema(
     },
     completed: {
       type: Boolean,
+      required: true,
+      trim: true
+    },
+    username: {
+      type: String,
       required: true,
       trim: true
     }
