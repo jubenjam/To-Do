@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function SignUp() {
   const [email, setEmail] = useState();
@@ -25,35 +25,48 @@ function SignUp() {
     bottom: "5px"
   };
 
-
-
   //style={{color: "red"}}
 
-  return(
+  return (
     <div className="SignUp" style={divStyle}>
       <h1 style={inputStyle}>Sign Up</h1>
       <form>
-      <label> 
+        <label>
           <p style={inputStyle}>Email</p>
-          <input type="text" style={inputStyle} onChange={e => setEmail(e.target.value)}/>
+          <input
+            type="text"
+            style={inputStyle}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
-        <label> 
+        <label>
           <p style={inputStyle}>Username</p>
-          <input type="text" style={inputStyle} onChange={e => setUserName(e.target.value)}/>
+          <input
+            type="text"
+            style={inputStyle}
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </label>
         <label>
           <p style={inputStyle}>Password</p>
-          <input type="password" style={inputStyle} onChange={e => setPassword(e.target.value)}/>
+          <input
+            type="password"
+            style={inputStyle}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
-        <div >
-          <button type="submit" style={buttonStyle}  >SignUp</button>
+        <div>
+          <button type="submit" style={buttonStyle}>
+            SignUp
+          </button>
         </div>
-        <p style={inputStyle}>Already have an account? <a href="http://localhost:3000/"> Login here</a></p>
+        <p style={inputStyle}>
+          Already have an account?{" "}
+          <a href="http://localhost:3000/"> Login here</a>
+        </p>
       </form>
-      
     </div>
-  )
+  );
 }
-
 
 export default SignUp;
