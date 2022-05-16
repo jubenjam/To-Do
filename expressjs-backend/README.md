@@ -1,6 +1,6 @@
 # TaskTime
 
-[![Node.js CI](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml)
 
 Use ESLint and Prettier extensions on vscode (separate extensions)
 

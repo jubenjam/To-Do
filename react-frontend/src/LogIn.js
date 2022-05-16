@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 
 function LogIn() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
   const divStyle = {
-    position: 'absolute', left: '50%', top: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
     border: "5px solid black"
   };
 
@@ -16,7 +19,7 @@ function LogIn() {
   };
 
   const buttonStyle = {
-    position: 'relative',
+    position: "relative",
     left: "300px",
     bottom: "5px"
   };

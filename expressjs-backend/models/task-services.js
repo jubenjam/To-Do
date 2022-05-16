@@ -1,29 +1,28 @@
 const mongoose = require("mongoose");
-const taskModel = require("./task");
+// const taskModel = require("./task");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
 // mongoose.set("debug", true);
 
-mongoose
-  .connect(
-    "mongodb+srv://" +
-      process.env.MONGO_USER +
-      ":" +
-      process.env.MONGO_PWD +
-      "@" +
-      process.env.MONGO_CLUSTER +
-      "/" +
-      process.env.MONGO_DB +
-      "?retryWrites=true&w=majority",
-    // "mongodb://localhost:27017/users",
-    {
-      useNewUrlParser: true, //useFindAndModify: false,
-      useUnifiedTopology: true
-    }
-  )
-  .catch((error) => console.log(error));
+var conn = mongoose.createConnection(
+  "mongodb+srv://" +
+    process.env.MONGO_USER +
+    ":" +
+    process.env.MONGO_PWD +
+    "@" +
+    process.env.MONGO_CLUSTER +
+    "/" +
+    process.env.MONGO_DB +
+    "?retryWrites=true&w=majority",
+  // "mongodb://localhost:27017/users",
+  {
+    useNewUrlParser: true, //useFindAndModify: false,
+    useUnifiedTopology: true
+  }
+);
+// .catch((error) => console.log(error));
 
 async function getTasks(category, date) {
   let result;
@@ -104,6 +103,34 @@ async function completeTask(id, completed) {
     return false;
   }
 }
+
+const TaskSchema = new mongoose.Schema(
+  {
+    task: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    date: {
+      type: Date,
+      required: true,
+      trim: true
+    },
+    category: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    completed: {
+      type: Boolean,
+      required: true,
+      trim: true
+    }
+  },
+  { collection: "task_list" }
+);
+
+const taskModel = conn.model("Task", TaskSchema);
 
 exports.deleteTaskById = deleteTaskById;
 exports.getTasks = getTasks;
