@@ -16,18 +16,18 @@ var conn = mongoose.createConnection(
     "/" +
     process.env.MONGO_DB +
     "?retryWrites=true&w=majority",
-  // "mongodb://localhost:27017/users",
   {
-    useNewUrlParser: true, //useFindAndModify: false,
+    useNewUrlParser: true, 
     useUnifiedTopology: true
   }
 );
-// .catch((error) => console.log(error));
-//http://localhost:5005/tasks/?username=dustint121
+
 async function getTasks(category, date, username) {
   let result;
-  if (!category && !date) {
-    result = await taskModel.find({username: username});
+  if (!category && !date && !username){
+    result = await taskModel.find()}
+  else if (!category && !date) {
+    result = await findTasksByUsername(username);   //http://localhost:5005/tasks/?username=dustint121
   } else if (category && !date) {
     result = await findTaskByCategory(category);
   } else if (date && !category) {
@@ -80,6 +80,10 @@ async function editTask(task, id) {
   }
 }
 
+async function findTasksByUsername(username) {
+  return await taskModel.find({ username: username });
+}
+
 async function findTaskByCategory(category) {
   return await taskModel.find({ category: category });
 }
@@ -128,7 +132,7 @@ const TaskSchema = new mongoose.Schema(
     },
     username: {
       type: String,
-      required: true,
+      // required: true,
       trim: true
     }
   },
