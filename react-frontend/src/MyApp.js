@@ -6,11 +6,18 @@ import axios from "axios";
 
 function MyApp(props) {
   const [characters, setCharacters] = useState([]);
-  const [username, setUserName] = useState(props.username);
+  const [username] = useState(props.username);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchAll().then((result) => {
       if (result) setCharacters(result);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchCategoriesofUser().then((result) => {
+      if (result) setCategories(result);
     });
   }, []);
 
@@ -24,14 +31,6 @@ function MyApp(props) {
       }
     });
   }
-
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetchCategories().then((result) => {
-      if (result) setCategories(result);
-    });
-  }, []);
 
   async function removeUser(index) {
     try {
@@ -88,9 +87,55 @@ function MyApp(props) {
     }
   }
 
-  async function fetchCategories() {
+  //http://localhost:5005/tasks/?username=dustint121&category=School
+  async function setTasksbyCategoryandUserName(category, username) {
     try {
-      const response = await axios.get("http://localhost:5005/categories");
+      if (category === "All") {
+        const response = await axios.get(
+          "http://localhost:5005/tasks/?username=".concat(username)
+        );
+        setCharacters(response.data.task_list);
+      } else {
+        console.log(
+          "http://localhost:5005/tasks/?username="
+            .concat(username)
+            .concat("&category=")
+            .concat(category)
+        );
+        const response = await axios.get(
+          "http://localhost:5005/tasks/?username="
+            .concat(username)
+            .concat("&category=")
+            .concat(category)
+        );
+        setCharacters(response.data.task_list);
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  // async function fetchCategories() {
+  //   try {
+  //     const response = await axios.get("http://localhost:5005/categories");
+  //     return response.data.category_list;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  // }
+
+  async function fetchCategoriesofUser() {
+    try {
+      const response = await axios.get(
+        "http://localhost:5005/categories/?username=".concat(username)
+      );
+      console.log("here");
+      console.log(
+        "http://localhost:5005/categories/?username=".concat(username)
+      );
+      console.log(response.data.category_list);
       return response.data.category_list;
     } catch (error) {
       console.log(error);
@@ -153,17 +198,18 @@ function MyApp(props) {
     }
   }
 
-  function completeOneTask(index, complete) {
-    completeTask(index, complete);
-  }
+  // function completeOneTask(index, complete) {
+  //   completeTask(index, complete);
+  // }
 
   return (
     <div className="container">
       <Form username={username} handleSubmit={updateList} />
       <FilterDropDown
+        username={username}
         characterData={characters}
         categories={categories}
-        setTasksbyCategory={setTasksbyCategory}
+        setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
       />
       <Table
         characterData={characters}

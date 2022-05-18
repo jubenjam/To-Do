@@ -43,8 +43,14 @@ app.get("/tasks/:id", async (req, res) => {
 
 app.get("/categories", async (req, res) => {
   try {
-    const result = await taskServices.getCategories();
-    res.send({ category_list: result });
+    const username = req.query["username"];
+    if (!username) {
+      const result = await taskServices.getCategories();
+      res.send({ category_list: result });
+    } else {
+      const result = await taskServices.getCategoriesOfUser(username);
+      res.send({ category_list: result });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
