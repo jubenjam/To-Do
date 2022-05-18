@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditPopup from "./EditPopup.js";
 import CheckForm from "./CheckForm";
+import "./Table.css";
 
 function TableHeader() {
   return (
@@ -41,6 +42,12 @@ function TableBody(props) {
 
   var rows = props.characterData.map((row, index) => {
     var date = new Date(row.date.replace(/-/g, "/").replace(/T.+/, ""));
+    var strikeClass = "none";
+
+    if (row.completed) {
+      strikeClass = "completed";
+    }
+
     return (
       <tr key={index}>
         <td>
@@ -52,7 +59,7 @@ function TableBody(props) {
             />
           }
         </td>
-        <td>{row.task}</td>
+        <td className={strikeClass}>{row.task}</td>
         <td>{date.toDateString()}</td>
         <td>{row.category}</td>
         <td>
