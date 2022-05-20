@@ -21,8 +21,9 @@ app.listen(process.env.PORT || port, () => {
 app.get("/tasks", async (req, res) => {
   const category = req.query["category"];
   const date = req.query["date"];
+  const username = req.query["username"];
   try {
-    const result = await taskServices.getTasks(category, date);
+    const result = await taskServices.getTasks(category, date, username);
     res.send({ task_list: result });
   } catch (error) {
     console.log(error);
@@ -42,8 +43,14 @@ app.get("/tasks/:id", async (req, res) => {
 
 app.get("/categories", async (req, res) => {
   try {
-    const result = await taskServices.getCategories();
-    res.send({ category_list: result });
+    const username = req.query["username"];
+    if (!username) {
+      const result = await taskServices.getCategories();
+      res.send({ category_list: result });
+    } else {
+      const result = await taskServices.getCategoriesOfUser(username);
+      res.send({ category_list: result });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
@@ -97,11 +104,13 @@ app.delete("/users/:id", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
-  const name = req.query["name"];
+//localhost:5005/users/?username=dustint121&password=121498765aA
+http: app.get("/users", async (req, res) => {
+  const username = req.query["username"];
+  const password = req.query["password"];
   try {
-    const result = await userServices.getUsers(name);
-    res.send({ task_list: result });
+    const result = await userServices.getUsers(username, password);
+    res.send({ user_list: result });
   } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");

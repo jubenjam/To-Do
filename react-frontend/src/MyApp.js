@@ -4,12 +4,20 @@ import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
 import axios from "axios";
 
-function MyApp() {
+function MyApp(props) {
   const [characters, setCharacters] = useState([]);
+  const [username] = useState(props.username);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     fetchAll().then((result) => {
       if (result) setCharacters(result);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchCategoriesofUser().then((result) => {
+      if (result) setCategories(result);
     });
   }, []);
 
@@ -23,14 +31,6 @@ function MyApp() {
       }
     });
   }
-
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetchCategories().then((result) => {
-      if (result) setCategories(result);
-    });
-  }, []);
 
   async function removeUser(index) {
     try {
@@ -46,7 +46,9 @@ function MyApp() {
 
   async function fetchAll() {
     try {
-      const response = await axios.get("http://localhost:5005/tasks");
+      const response = await axios.get(
+        "http://localhost:5005/tasks/?username=".concat(username)
+      );
       return response.data.task_list;
     } catch (error) {
       //We're not handling errors. Just logging into the console.
@@ -68,7 +70,9 @@ function MyApp() {
   async function setTasksbyCategory(category) {
     try {
       if (category === "All") {
-        const response = await axios.get("http://localhost:5005/tasks");
+        const response = await axios.get(
+          "http://localhost:5005/tasks/?username=".concat(username)
+        );
         setCharacters(response.data.task_list);
       } else {
         console.log("http://localhost:5005/tasks?category=".concat(category));
@@ -83,9 +87,55 @@ function MyApp() {
     }
   }
 
-  async function fetchCategories() {
+  //http://localhost:5005/tasks/?username=dustint121&category=School
+  async function setTasksbyCategoryandUserName(category, username) {
     try {
-      const response = await axios.get("http://localhost:5005/categories");
+      if (category === "All") {
+        const response = await axios.get(
+          "http://localhost:5005/tasks/?username=".concat(username)
+        );
+        setCharacters(response.data.task_list);
+      } else {
+        console.log(
+          "http://localhost:5005/tasks/?username="
+            .concat(username)
+            .concat("&category=")
+            .concat(category)
+        );
+        const response = await axios.get(
+          "http://localhost:5005/tasks/?username="
+            .concat(username)
+            .concat("&category=")
+            .concat(category)
+        );
+        setCharacters(response.data.task_list);
+      }
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  // async function fetchCategories() {
+  //   try {
+  //     const response = await axios.get("http://localhost:5005/categories");
+  //     return response.data.category_list;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  // }
+
+  async function fetchCategoriesofUser() {
+    try {
+      const response = await axios.get(
+        "http://localhost:5005/categories/?username=".concat(username)
+      );
+      console.log("here");
+      console.log(
+        "http://localhost:5005/categories/?username=".concat(username)
+      );
+      console.log(response.data.category_list);
       return response.data.category_list;
     } catch (error) {
       console.log(error);
@@ -94,6 +144,7 @@ function MyApp() {
   }
 
   function updateList(person) {
+    console.log(person);
     makePostCall(person).then((result) => {
       if (result && result.status === 201)
         setCharacters([...characters, result.data]);
@@ -153,11 +204,12 @@ function MyApp() {
 
   return (
     <div className="container">
-      <Form handleSubmit={updateList} />
+      <Form username={username} handleSubmit={updateList} />
       <FilterDropDown
+        username={username}
         characterData={characters}
         categories={categories}
-        setTasksbyCategory={setTasksbyCategory}
+        setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
       />
       <Table
         characterData={characters}

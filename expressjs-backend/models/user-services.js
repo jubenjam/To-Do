@@ -3,8 +3,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// mongoose.set("debug", true);
-
 var conn = mongoose.createConnection(
   "mongodb+srv://" +
     process.env.MONGO_USER +
@@ -13,22 +11,24 @@ var conn = mongoose.createConnection(
     "@" +
     process.env.MONGO_CLUSTER +
     "/" +
-    process.env.MONGO_DB2 +
+    process.env.MONGO_DB +
     "?retryWrites=true&w=majority",
-  // "mongodb://localhost:27017/users",
   {
-    useNewUrlParser: true, //useFindAndModify: false,
+    useNewUrlParser: true,
     useUnifiedTopology: true
   }
 );
-// .catch((error) => console.log(error));
 
-async function getUsers(name) {
+async function getUsers(username, password) {
   let result;
-  if (name === undefined) {
+  if (username === undefined && password === undefined) {
     result = await userModel.find();
-  } else {
-    result = await findUserByName(name);
+  } 
+  else if (password === undefined){
+    result = await findUserByName(username);
+  } 
+  else{
+    result = await matchByUsernameAndPassword(username, password)
   }
   return result;
 }
@@ -36,6 +36,19 @@ async function getUsers(name) {
 async function findUserById(id) {
   try {
     return await userModel.findById(id);
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+async function findUserByName(username) {
+  return await userModel.find({ username: username });
+}
+
+async function matchByUsernameAndPassword(username, password) {
+  try {
+    return await userModel.find({ username: username }, { password: password });
   } catch (error) {
     console.log(error);
     return undefined;
@@ -71,13 +84,11 @@ async function editUser(user, id) {
   }
 }
 
-async function findUserByName(name) {
-  return await userModel.find({ name: name });
-}
+
 
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true
     },
