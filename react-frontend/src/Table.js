@@ -49,7 +49,7 @@ function TableBody(props) {
     }
 
     return (
-      <tr key={index}>
+      <tr key={index} className={strikeClass}>
         <td>
           {
             <CheckForm
@@ -59,7 +59,7 @@ function TableBody(props) {
             />
           }
         </td>
-        <td className={strikeClass}>{row.task}</td>
+        <td>{row.task}</td>
         <td>{date.toDateString()}</td>
         <td>{row.category}</td>
         <td>
