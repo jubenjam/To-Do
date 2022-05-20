@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function LogIn() {
   const [username, setUserName] = useState();
@@ -43,7 +44,7 @@ function LogIn() {
         <div >
           <button type="submit" style={buttonStyle}  >Login</button>
         </div>
-        <p style={inputStyle}>Already have an account? <a href="http://localhost:3000/signup/"> Login here</a></p>
+        <p style={inputStyle}>Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link></p>
       </form>
     </div>
   )

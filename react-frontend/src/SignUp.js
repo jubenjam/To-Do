@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function SignUp() {
   const [email, setEmail] = useState();
@@ -62,8 +63,8 @@ function SignUp() {
         </div>
         <p style={inputStyle}>
           Already have an account?{" "}
-          <a href="http://localhost:3000/"> Login here</a>
-        </p>
+          <Link to="/"> Log In here
+        </Link></p>
       </form>
     </div>
   );
