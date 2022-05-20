@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SignUp(props) {
+  const [email, setEmail] = useState();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
@@ -29,7 +31,7 @@ function SignUp(props) {
       }
     } else {
       console.log("Username not found!");
-      const person = { username: username, password: password };
+      const person = { username: username, password: password, email: email };
       console.log(person);
       addNewUser(person);
       props.setUserName(username);
@@ -73,6 +75,14 @@ function SignUp(props) {
       <h1 style={inputStyle}>Please Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label>
+          <p style={inputStyle}>Email</p>
+          <input
+            type="text"
+            style={inputStyle}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <label>
           <p style={inputStyle}>Username</p>
           <input
             type="text"
@@ -93,6 +103,9 @@ function SignUp(props) {
             SignUp
           </button>
         </div>
+        <p style={inputStyle}>
+          Already have an account? <Link to="/"> Log In here</Link>
+        </p>
       </form>
     </div>
   );

@@ -466,6 +466,7 @@ h5 {
   font-size: 1rem;
 }
 
+
 @media (min-width: 600px) {
   h1:not(:first-child),
   h2:not(:first-child),
@@ -490,14 +491,14 @@ h5 {
 }
 
 a {
-  color: #ffe66d;
+  color: #1A535C;
   text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #ffe66d;
+  color: #1A535C;
   text-decoration: underline;
 }
 

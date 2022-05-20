@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function LogIn(props) {
   const [username, setUserName] = useState();
@@ -78,6 +79,9 @@ function LogIn(props) {
             Login
           </button>
         </div>
+        <p style={inputStyle}>
+          Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link>
+        </p>
       </form>
     </div>
   );
