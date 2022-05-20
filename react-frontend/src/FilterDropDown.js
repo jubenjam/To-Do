@@ -9,8 +9,8 @@ function FilterDropDown(props) {
   const handleSelect = (eventkey, e) => {
     console.log(props.categories);
     console.log(e.target.text);
-    console.log(typeof(e.target.text))
-    props.setTasksbyCategoryandUserName(e.target.text, props.username)
+    console.log(typeof e.target.text);
+    props.setTasksbyCategoryandUserName(e.target.text, props.username);
   };
 
   return (
@@ -19,7 +19,6 @@ function FilterDropDown(props) {
       title="Category Filter"
       onSelect={handleSelect}
     >
-
       <Dropdown.Item key="None">All</Dropdown.Item>
       {props.categories.map((item) => {
         return (

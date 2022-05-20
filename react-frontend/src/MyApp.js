@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import Table from "./Table";
 import Form from "./Form";
@@ -13,13 +14,13 @@ function MyApp(props) {
     fetchAll().then((result) => {
       if (result) setCharacters(result);
     });
-  });
+  }, []);
 
   useEffect(() => {
     fetchCategoriesofUser().then((result) => {
       if (result) setCategories(result);
     });
-  });
+  }, []);
 
   function removeOneCharacter(index) {
     removeUser(index).then((result) => {
