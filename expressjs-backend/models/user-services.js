@@ -23,12 +23,10 @@ async function getUsers(username, password) {
   let result;
   if (username === undefined && password === undefined) {
     result = await userModel.find();
-  } 
-  else if (password === undefined){
+  } else if (password === undefined) {
     result = await findUserByName(username);
-  } 
-  else{
-    result = await matchByUsernameAndPassword(username, password)
+  } else {
+    result = await matchByUsernameAndPassword(username, password);
   }
   return result;
 }
@@ -83,8 +81,6 @@ async function editUser(user, id) {
     return false;
   }
 }
-
-
 
 const UserSchema = new mongoose.Schema(
   {

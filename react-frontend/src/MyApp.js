@@ -13,13 +13,13 @@ function MyApp(props) {
     fetchAll().then((result) => {
       if (result) setCharacters(result);
     });
-  }, []);
+  });
 
   useEffect(() => {
     fetchCategoriesofUser().then((result) => {
       if (result) setCategories(result);
     });
-  }, []);
+  });
 
   function removeOneCharacter(index) {
     removeUser(index).then((result) => {
@@ -67,25 +67,25 @@ function MyApp(props) {
     }
   }
 
-  async function setTasksbyCategory(category) {
-    try {
-      if (category === "All") {
-        const response = await axios.get(
-          "http://localhost:5005/tasks/?username=".concat(username)
-        );
-        setCharacters(response.data.task_list);
-      } else {
-        console.log("http://localhost:5005/tasks?category=".concat(category));
-        const response = await axios.get(
-          "http://localhost:5005/tasks?category=".concat(category)
-        );
-        setCharacters(response.data.task_list);
-      }
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
+  // async function setTasksbyCategory(category) {
+  //   try {
+  //     if (category === "All") {
+  //       const response = await axios.get(
+  //         "http://localhost:5005/tasks/?username=".concat(username)
+  //       );
+  //       setCharacters(response.data.task_list);
+  //     } else {
+  //       console.log("http://localhost:5005/tasks?category=".concat(category));
+  //       const response = await axios.get(
+  //         "http://localhost:5005/tasks?category=".concat(category)
+  //       );
+  //       setCharacters(response.data.task_list);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     return false;
+  //   }
+  // }
 
   //http://localhost:5005/tasks/?username=dustint121&category=School
   async function setTasksbyCategoryandUserName(category, username) {

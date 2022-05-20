@@ -29,7 +29,7 @@ async function getTasks(category, date, username) {
   } else if (!category && !date) {
     result = await findTasksByUsername(username); //http://localhost:5005/tasks/?username=dustint121
   } else if (category && !date) {
-    result = await findTaskByCategoryandUsername(category, username);  //http://localhost:5005/tasks/?username=dustint121&category=School
+    result = await findTaskByCategoryandUsername(category, username); //http://localhost:5005/tasks/?username=dustint121&category=School
   } else if (date && !category) {
     result = await findTaskByDate(date);
   } else {
@@ -85,7 +85,7 @@ async function editTask(task, id) {
 }
 
 async function findTasksByUsername(username) {
-  return await taskModel.find({ username: username,  username: username });
+  return await taskModel.find({ username: username, username: username });
 }
 
 async function findTaskByCategory(category) {
