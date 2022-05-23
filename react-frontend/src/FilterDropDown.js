@@ -18,7 +18,7 @@ function FilterDropDown(props) {
     <DropdownButton
       id="dropdown-basic-button"
       title="Category Filter"
-      className = "inline-block"
+      className="inline-block"
       onSelect={handleSelect}
     >
       <Dropdown.Item key="None">All</Dropdown.Item>

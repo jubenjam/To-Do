@@ -22,7 +22,6 @@ function MyApp(props) {
     });
   }, []);
 
-
   function removeOneCharacter(index) {
     removeUser(index).then((result) => {
       if (result && result.status === 204) {
@@ -92,11 +91,9 @@ function MyApp(props) {
   //http://localhost:5005/tasks/?username=dustint121&category=School
   async function setTasksbyCategoryandUserName(category, username) {
     try {
-      if (sort === true)
-      {
+      if (sort === true) {
         sortList(username, category);
-      }
-      else {
+      } else {
         if ((category == null) | (category === "All")) {
           const response = await axios.get(
             "http://localhost:5005/tasks/?username=".concat(username)
@@ -155,7 +152,9 @@ function MyApp(props) {
     console.log(person);
     makePostCall(person).then((result) => {
       if (result && result.status === 201) {
-        if (sort) {sortList(username, category);}
+        if (sort) {
+          sortList(username, category);
+        }
         setCharacters([...characters, result.data]);
       }
     });
@@ -177,7 +176,9 @@ function MyApp(props) {
   function editList(person, index) {
     makePatchCall(person, index).then((result) => {
       if (result && result.status === 201) {
-        if (sort) {sortList(username, category);}
+        if (sort) {
+          sortList(username, category);
+        }
         let newChar = [...characters];
         newChar[index] = person;
         setCharacters(newChar);
@@ -213,10 +214,15 @@ function MyApp(props) {
     let response = null;
     try {
       if ((category == null) | (category === "All")) {
-        response = await axios.get("http://localhost:5005/sort?username=".concat(username));
+        response = await axios.get(
+          "http://localhost:5005/sort?username=".concat(username)
+        );
       } else {
         response = await axios.get(
-          "http://localhost:5005/sort?category=".concat(category).concat("&username=").concat(username)
+          "http://localhost:5005/sort?category="
+            .concat(category)
+            .concat("&username=")
+            .concat(username)
         );
       }
       return response;
@@ -238,7 +244,7 @@ function MyApp(props) {
   async function removeSort(username, category) {
     try {
       console.log("remove");
-      console.log(username)
+      console.log(username);
       if ((category == null) | (category === "All")) {
         const response = await axios.get(
           "http://localhost:5005/tasks/?username=".concat(username)
@@ -266,31 +272,50 @@ function MyApp(props) {
   const [category, setCategory] = useState(null);
   const [sort, setSort] = useState(false);
 
-
   return (
     <div>
-    <div className="topnav">
-        <a href = "/" className = "logout">Logout</a>
+      <div className="topnav">
+        <a href="/" className="logout">
+          Logout
+        </a>
       </div>
-    <div className="container">
-      <Form username={username} handleSubmit={updateList} />
-      <FilterDropDown
-        username={username}
-        characterData={characters}
-        categories={categories}
-        setCategory = {setCategory}
-        category = {category}
-        setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
-      />
-      {sort && <button className = "sort-button2" onClick={() => {setSort(false); removeSort(username, category)}}>Remove Sort</button>}   
-      <button className = "sort-button" onClick={() => {setSort(true); sortList(username, category)}}>Sort by Earliest Due Date</button>
-      <Table
-        characterData={characters}
-        removeCharacter={removeOneCharacter}
-        handleEdit={editList}
-        completeTask={updateCheck}
-      />
-    </div>
+      <div className="container">
+        <Form username={username} handleSubmit={updateList} />
+        <FilterDropDown
+          username={username}
+          characterData={characters}
+          categories={categories}
+          setCategory={setCategory}
+          category={category}
+          setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
+        />
+        {sort && (
+          <button
+            className="sort-button2"
+            onClick={() => {
+              setSort(false);
+              removeSort(username, category);
+            }}
+          >
+            Remove Sort
+          </button>
+        )}
+        <button
+          className="sort-button"
+          onClick={() => {
+            setSort(true);
+            sortList(username, category);
+          }}
+        >
+          Sort by Earliest Due Date
+        </button>
+        <Table
+          characterData={characters}
+          removeCharacter={removeOneCharacter}
+          handleEdit={editList}
+          completeTask={updateCheck}
+        />
+      </div>
     </div>
   );
 }

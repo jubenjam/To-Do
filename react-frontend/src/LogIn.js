@@ -43,15 +43,14 @@ function LogIn(props) {
 
   const inputStyle = {
     margin: "20px",
-    width: "400px",
-    
+    width: "400px"
   };
 
   const buttonStyle = {
     position: "relative",
     left: "335px",
     bottom: "30px"
-  }
+  };
 
   //style={{color: "red"}}
 
@@ -76,7 +75,7 @@ function LogIn(props) {
           />
         </label>
         <h8 style={inputStyle}>
-          Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link> 
+          Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link>
         </h8>
         <div>
           <button type="submit" style={buttonStyle}>

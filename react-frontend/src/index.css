@@ -466,7 +466,6 @@ h5 {
   font-size: 1rem;
 }
 
-
 @media (min-width: 600px) {
   h1:not(:first-child),
   h2:not(:first-child),
@@ -491,14 +490,14 @@ h5 {
 }
 
 a {
-  color: #1A535C;
+  color: #1a535c;
   text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #1A535C;
+  color: #1a535c;
   text-decoration: underline;
 }
 
@@ -1233,20 +1232,20 @@ caption {
 
 .sort-button {
   margin-right: 30px;
-  float : right;
+  float: right;
 }
 
 .sort-button2 {
-  background: #FF6D6D;
-  border: 1px solid #FF6D6D;
+  background: #ff6d6d;
+  border: 1px solid #ff6d6d;
   color: #ffffff;
-  display : block;
-  float : right;
+  display: block;
+  float: right;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #1A535C;
+  background-color: #1a535c;
 }
 
 .logout {
@@ -1264,7 +1263,7 @@ caption {
 }
 
 .logout:active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 

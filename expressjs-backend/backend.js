@@ -134,14 +134,14 @@ app.post("/users", async (req, res) => {
   else res.status(500).end();
 });
 
-app.get("/sort", async(req, res) => {
+app.get("/sort", async (req, res) => {
   try {
     const username = req.query["username"];
     const category = req.query["category"];
     const result = await taskServices.sortTasks(category, username);
     res.send({ task_list: result });
-} catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
-}
+  }
 });
