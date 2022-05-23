@@ -59,6 +59,7 @@ function TableBody(props) {
           <input
             type="button"
             value="Edit"
+            // className="margin-right"
             onClick={() =>
               openPopup(row._id, row.task, date, row.category, index)
             }
