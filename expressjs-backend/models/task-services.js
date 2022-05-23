@@ -16,20 +16,20 @@ var conn = mongoose.createConnection(
     "/" +
     process.env.MONGO_DB +
     "?retryWrites=true&w=majority",
-  // "mongodb://localhost:27017/users",
   {
-    useNewUrlParser: true, //useFindAndModify: false,
+    useNewUrlParser: true,
     useUnifiedTopology: true
   }
 );
-// .catch((error) => console.log(error));
 
-async function getTasks(category, date) {
+async function getTasks(category, date, username) {
   let result;
-  if (category === undefined && date === undefined) {
+  if (!category && !date && !username) {
     result = await taskModel.find();
+  } else if (!category && !date) {
+    result = await findTasksByUsername(username); //http://localhost:5005/tasks/?username=dustint121
   } else if (category && !date) {
-    result = await findTaskByCategory(category);
+    result = await findTaskByCategoryandUsername(category, username); //http://localhost:5005/tasks/?username=dustint121&category=School
   } else if (date && !category) {
     result = await findTaskByDate(date);
   } else {
@@ -40,6 +40,10 @@ async function getTasks(category, date) {
 
 async function getCategories() {
   return await taskModel.distinct("category");
+}
+
+async function getCategoriesOfUser(username) {
+  return await taskModel.distinct("category", { username: username });
 }
 
 async function findTaskById(id) {
@@ -80,7 +84,15 @@ async function editTask(task, id) {
   }
 }
 
+async function findTasksByUsername(username) {
+  return await taskModel.find({ username: username, username: username });
+}
+
 async function findTaskByCategory(category) {
+  return await taskModel.find({ category: category });
+}
+
+async function findTaskByCategoryandUsername(category, username) {
   return await taskModel.find({ category: category });
 }
 
@@ -125,6 +137,11 @@ const TaskSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
       trim: true
+    },
+    username: {
+      type: String,
+      // required: true,
+      trim: true
     }
   },
   { collection: "task_list" }
@@ -138,4 +155,5 @@ exports.findTaskById = findTaskById;
 exports.addTask = addTask;
 exports.editTask = editTask;
 exports.getCategories = getCategories;
+exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;

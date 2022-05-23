@@ -1,9 +1,37 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function LogIn() {
+function LogIn(props) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/tasks`;
+    navigate(path);
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await axios.get(
+      "http://localhost:5005/users".concat("?username=").concat(username)
+    );
+    console.log(response.data.user_list);
+    if (response.data.user_list.length === 1) {
+      if (password === response.data.user_list[0].password) {
+        console.log("Match found!");
+        console.log(username);
+        props.setUserName(username);
+        routeChange();
+      } else {
+        console.log("Wrong Password");
+      }
+    } else {
+      console.log("Username not found!");
+    }
+  }
 
   const divStyle = {
     position: "absolute",
@@ -29,7 +57,7 @@ function LogIn() {
   return (
     <div className="Log In" style={divStyle}>
       <h1 style={inputStyle}>Please Log In</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           <p style={inputStyle}>Username</p>
           <input
@@ -51,6 +79,9 @@ function LogIn() {
             Login
           </button>
         </div>
+        <p style={inputStyle}>
+          Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link>
+        </p>
       </form>
     </div>
   );

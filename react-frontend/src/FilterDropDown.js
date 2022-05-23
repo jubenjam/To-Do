@@ -7,9 +7,10 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 
 function FilterDropDown(props) {
   const handleSelect = (eventkey, e) => {
-    // console.log(e);
-    // console.log(e.target.text);
-    props.setTasksbyCategory(e.target.text);
+    console.log(props.categories);
+    console.log(e.target.text);
+    console.log(typeof e.target.text);
+    props.setTasksbyCategoryandUserName(e.target.text, props.username);
   };
 
   return (

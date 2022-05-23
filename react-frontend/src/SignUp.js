@@ -1,9 +1,53 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function SignUp() {
+function SignUp(props) {
+  const [email, setEmail] = useState();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/tasks`;
+    navigate(path);
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const response = await axios.get(
+      "http://localhost:5005/users".concat("?username=").concat(username)
+    );
+    console.log(response.data.user_list);
+    if (response.data.user_list.length === 1) {
+      if (password === response.data.user_list[0].password) {
+        console.log("Match found!");
+        // console.log(username);
+        // props.setUserName(username);
+        // routeChange();
+      } else {
+        console.log("Wrong Password");
+      }
+    } else {
+      console.log("Username not found!");
+      const person = { username: username, password: password, email: email };
+      console.log(person);
+      addNewUser(person);
+      props.setUserName(username);
+      routeChange();
+    }
+  }
+
+  async function addNewUser(person) {
+    try {
+      const response = await axios.post("http://localhost:5005/users", person);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
   const divStyle = {
     position: "absolute",
@@ -29,7 +73,15 @@ function SignUp() {
   return (
     <div className="SignUp" style={divStyle}>
       <h1 style={inputStyle}>Please Sign Up</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
+        <label>
+          <p style={inputStyle}>Email</p>
+          <input
+            type="text"
+            style={inputStyle}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
         <label>
           <p style={inputStyle}>Username</p>
           <input
@@ -51,6 +103,9 @@ function SignUp() {
             SignUp
           </button>
         </div>
+        <p style={inputStyle}>
+          Already have an account? <Link to="/"> Log In here</Link>
+        </p>
       </form>
     </div>
   );

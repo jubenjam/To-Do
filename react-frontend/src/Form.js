@@ -5,7 +5,8 @@ function Form(props) {
     task: "",
     date: "",
     category: "",
-    completed: false
+    completed: false,
+    username: props.username
   });
   function handleChange(event) {
     const { name, value } = event.target;
@@ -14,26 +15,29 @@ function Form(props) {
         task: task["task"],
         date: value,
         category: task["category"],
-        completed: false
+        completed: false,
+        username: props.username
       });
     else if (name === "category")
       setTask({
         task: task["task"],
         date: task["date"],
         category: value,
-        completed: false
+        completed: false,
+        username: props.username
       });
     else
       setTask({
         task: value,
         date: task["date"],
         category: task["category"],
-        completed: false
+        completed: false,
+        username: props.username
       });
   }
   function submitForm() {
     props.handleSubmit(task);
-    setTask({ task: "", date: "", category: "", completed: false });
+    setTask({ task: "", date: "", category: "", completed: false, username: props.username });
   }
   return (
     <form>
