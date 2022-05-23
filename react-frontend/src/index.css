@@ -1128,6 +1128,10 @@ td {
   padding: 0.5rem;
 }
 
+h8 {
+  font-size: 13px;
+}
+
 caption {
   padding: 1rem 0;
   caption-side: bottom;
