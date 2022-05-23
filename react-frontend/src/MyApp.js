@@ -4,6 +4,7 @@ import Table from "./Table";
 import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
 import axios from "axios";
+// const checkForm = require("./CheckForm");
 
 function MyApp(props) {
   const [characters, setCharacters] = useState([]);
@@ -29,6 +30,9 @@ function MyApp(props) {
           return i !== index;
         });
         setCharacters(updated);
+        for (let i = 0; i < updated.length; i++) {
+          document.getElementById("c" + i).checked = updated[i].completed;
+        }
       }
     });
   }
@@ -184,9 +188,12 @@ function MyApp(props) {
     removeComplete().then((result) => {
       if (result && result.status === 204) {
         const updated = characters.filter(
-          (character) => character.completed === true
+          (character) => character.completed !== true
         );
         setCharacters(updated);
+        for (let i = 0; i < updated.length; i++) {
+          document.getElementById("c" + i).checked = updated[i].completed;
+        }
       }
     });
   }
