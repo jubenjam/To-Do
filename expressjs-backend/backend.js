@@ -133,3 +133,10 @@ app.post("/users", async (req, res) => {
   if (savedUser) res.status(201).send(savedUser);
   else res.status(500).end();
 });
+
+app.post("/users/?username=:username", async (req, res) => {
+  const newPassword = req.body;
+  const updatedUser = await userServices.changePassword(username, newPassword);
+  if (updatedUser) res.status.send(updatedUser);
+  else res.status(500).end();
+});

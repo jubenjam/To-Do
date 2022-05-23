@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import Table from "./Table";
 import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
+import ProfilePopup from "./ProfilePopup.js";
 import axios from "axios";
+import "./MyApp.css";
 
 function MyApp(props) {
   const [characters, setCharacters] = useState([]);
@@ -199,13 +201,48 @@ function MyApp(props) {
     }
   }
 
+  async function changePassword(oldPassword, newPassword) {
+    let response = await axios.get(
+      "http://localhost:5005/users".concat("?username=").concat(username)
+    );
+    console.log(response.data.user_list);
+    if (response.data.user_list.length === 1) {
+      if (oldPassword === response.data.user_list[0].password) {
+        console.log("Match found!");
+        console.log(username);
+        response = await axios.patch(
+          "http://localhost:5005/users".concat("?username=").concat(username),
+          newPassword
+        );
+        routeChange();
+      } else {
+        console.log("Wrong Password");
+      }
+    } else {
+      console.log("Username not found!");
+    }
+  }
   // function completeOneTask(index, complete) {
   //   completeTask(index, complete);
   // }
 
+  const [show, setShow] = useState(false);
+
   return (
     <div className="container">
       <Form username={username} handleSubmit={updateList} />
+      <img
+        src="logo512.png"
+        alt="Profile Pic"
+        id="profile"
+        title=""
+        onClick={() => {
+          setShow(true);
+        }}
+      />
+      {show && (
+        <ProfilePopup setShow={setShow} changePassword={changePassword} />
+      )}
       <FilterDropDown
         username={username}
         characterData={characters}
