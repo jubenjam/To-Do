@@ -88,6 +88,7 @@ function Table(props) {
         removeCharacter={props.removeCharacter}
         handleEdit={props.handleEdit}
         completeTask={props.completeTask}
+        username={props.username}
       />
     </table>
   );

@@ -55,6 +55,15 @@ async function findTaskById(id) {
   }
 }
 
+async function deleteCompeteByUser(user) {
+  try {
+    return await taskModel.deleteMany({ username: user, completed: true });
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
 async function deleteTaskById(id) {
   try {
     return await taskModel.findByIdAndDelete(id);
@@ -102,6 +111,10 @@ async function findTaskByDate(date) {
 
 async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
+}
+
+async function findTaskByUserAndComplete(username, completed) {
+  return await taskModel.find({ username: username, completed: completed });
 }
 
 async function completeTask(id, completed) {
@@ -157,3 +170,4 @@ exports.editTask = editTask;
 exports.getCategories = getCategories;
 exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;
+exports.deleteCompeteByUser = deleteCompeteByUser;

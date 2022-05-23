@@ -68,27 +68,6 @@ function MyApp(props) {
     }
   }
 
-  // async function setTasksbyCategory(category) {
-  //   try {
-  //     if (category === "All") {
-  //       const response = await axios.get(
-  //         "http://localhost:5005/tasks/?username=".concat(username)
-  //       );
-  //       setCharacters(response.data.task_list);
-  //     } else {
-  //       console.log("http://localhost:5005/tasks?category=".concat(category));
-  //       const response = await axios.get(
-  //         "http://localhost:5005/tasks?category=".concat(category)
-  //       );
-  //       setCharacters(response.data.task_list);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     return false;
-  //   }
-  // }
-
-  //http://localhost:5005/tasks/?username=dustint121&category=School
   async function setTasksbyCategoryandUserName(category, username) {
     try {
       if (category === "All") {
@@ -116,16 +95,6 @@ function MyApp(props) {
       return false;
     }
   }
-
-  // async function fetchCategories() {
-  //   try {
-  //     const response = await axios.get("http://localhost:5005/categories");
-  //     return response.data.category_list;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return false;
-  //   }
-  // }
 
   async function fetchCategoriesofUser() {
     try {
@@ -199,9 +168,28 @@ function MyApp(props) {
     }
   }
 
-  // function completeOneTask(index, complete) {
-  //   completeTask(index, complete);
-  // }
+  async function removeComplete() {
+    try {
+      const response = await axios.delete(
+        "http://localhost:5005/tasks/?username=".concat(username)
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
+  function removeAll() {
+    removeComplete().then((result) => {
+      if (result && result.status === 204) {
+        const updated = characters.filter(
+          (character) => character.completed === true
+        );
+        setCharacters(updated);
+      }
+    });
+  }
 
   return (
     <div className="container">
@@ -212,6 +200,7 @@ function MyApp(props) {
         categories={categories}
         setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
       />
+      <input type="button" value="Delete Completed Tasks" onClick={removeAll} />
       <Table
         characterData={characters}
         removeCharacter={removeOneCharacter}
