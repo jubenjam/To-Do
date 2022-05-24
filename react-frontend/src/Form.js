@@ -37,7 +37,13 @@ function Form(props) {
   }
   function submitForm() {
     props.handleSubmit(task);
-    setTask({ task: "", date: "", category: "", completed: false, username: props.username });
+    setTask({
+      task: "",
+      date: "",
+      category: "",
+      completed: false,
+      username: props.username
+    });
   }
   return (
     <form>

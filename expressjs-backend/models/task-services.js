@@ -93,8 +93,23 @@ async function editTask(task, id) {
   }
 }
 
+async function sortTasks(category, username) {
+  try {
+    if (category == undefined) {
+      return await taskModel.find({ username: username }).sort({ date: 1 });
+    } else {
+      return await taskModel
+        .find({ category: category, username: username })
+        .sort({ date: 1 });
+    }
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
 async function findTasksByUsername(username) {
-  return await taskModel.find({ username: username, username: username });
+  return await taskModel.find({ username: username });
 }
 
 async function findTaskByCategory(category) {
@@ -102,7 +117,7 @@ async function findTaskByCategory(category) {
 }
 
 async function findTaskByCategoryandUsername(category, username) {
-  return await taskModel.find({ category: category });
+  return await taskModel.find({ username: username, category: category });
 }
 
 async function findTaskByDate(date) {
@@ -171,3 +186,4 @@ exports.getCategories = getCategories;
 exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;
 exports.deleteCompeteByUser = deleteCompeteByUser;
+exports.sortTasks = sortTasks;

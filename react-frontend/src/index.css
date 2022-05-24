@@ -466,7 +466,6 @@ h5 {
   font-size: 1rem;
 }
 
-
 @media (min-width: 600px) {
   h1:not(:first-child),
   h2:not(:first-child),
@@ -491,14 +490,14 @@ h5 {
 }
 
 a {
-  color: #1A535C;
+  color: #1a535c;
   text-decoration: none;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #1A535C;
+  color: #1a535c;
   text-decoration: underline;
 }
 
@@ -1128,6 +1127,10 @@ td {
   padding: 0.5rem;
 }
 
+h8 {
+  font-size: 13px;
+}
+
 caption {
   padding: 1rem 0;
   caption-side: bottom;
@@ -1225,6 +1228,43 @@ caption {
   background: #ff6b6b;
   color: #ffffff;
   text-decoration: none;
+}
+
+.sort-button {
+  margin-right: 30px;
+  float: right;
+}
+
+.sort-button2 {
+  background: #ff6d6d;
+  border: 1px solid #ff6d6d;
+  color: #ffffff;
+  display: block;
+  float: right;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #1a535c;
+}
+
+.logout {
+  color: white;
+  float: right;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.logout:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+.logout:active {
+  background-color: #04aa6d;
+  color: white;
 }
 
 .modal-open {
