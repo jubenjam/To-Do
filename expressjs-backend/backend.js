@@ -76,7 +76,7 @@ app.delete("/tasks/:id", async (req, res) => {
 
 app.delete("/tasks", async (req, res) => {
   const user = req.query["username"];
-  const result = await taskServices.deleteCompeteByUser(user);
+  const result = await taskServices.deleteCompleteByUser(user);
   if (result === undefined || result === null)
     res.status(404).send("Resource not found.");
   else {

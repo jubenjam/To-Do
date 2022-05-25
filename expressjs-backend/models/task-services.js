@@ -55,7 +55,7 @@ async function findTaskById(id) {
   }
 }
 
-async function deleteCompeteByUser(user) {
+async function deleteCompleteByUser(user) {
   try {
     return await taskModel.deleteMany({ username: user, completed: true });
   } catch (error) {
@@ -185,5 +185,5 @@ exports.editTask = editTask;
 exports.getCategories = getCategories;
 exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;
-exports.deleteCompeteByUser = deleteCompeteByUser;
+exports.deleteCompleteByUser = deleteCompleteByUser;
 exports.sortTasks = sortTasks;
