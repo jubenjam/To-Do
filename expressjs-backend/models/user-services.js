@@ -45,12 +45,7 @@ async function findUserByName(username) {
 }
 
 async function matchByUsernameAndPassword(username, password) {
-  try {
-    return await userModel.find({ username: username }, { password: password });
-  } catch (error) {
-    console.log(error);
-    return undefined;
-  }
+  return await userModel.find({ username: username }, { password: password });
 }
 
 async function deleteUserById(id) {
@@ -106,3 +101,4 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
 exports.editUser = editUser;
+exports.matchByUsernameAndPassword = matchByUsernameAndPassword;
