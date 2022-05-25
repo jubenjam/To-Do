@@ -3,63 +3,63 @@ const userServices = require("./user-services.js");
 const mongoose = require("mongoose");
 const { MongoMemoryServer } = require("mongodb-memory-server");
 
-let mongoServer;
-let conn;
-let task_schema;
-let result;
+// let mongoServer;
+// let conn;
+// let task_schema;
+// let result;
 
-beforeAll(async () => {
-    mongoServer = await MongoMemoryServer.create();
-    const uri = mongoServer.getUri();
+// beforeAll(async () => {
+//     mongoServer = await MongoMemoryServer.create();
+//     const uri = mongoServer.getUri();
   
-    const mongooseOpts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    };
+//     const mongooseOpts = {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     };
   
-    conn = mongoose.createConnection(uri, mongooseOpts);
+//     conn = mongoose.createConnection(uri, mongooseOpts);
   
-    task_schema = conn.model("Tasks", taskSchema);
+//     task_schema = conn.model("Tasks", taskSchema);
   
-    task-services.connect(conn);
-  });
+//     task-services.connect(conn);
+//   });
 
-afterAll(async () => {
-    await conn.dropDatabase();
-    await conn.close();
-    await mongoServer.stop();
-});
+// afterAll(async () => {
+//     await conn.dropDatabase();
+//     await conn.close();
+//     await mongoServer.stop();
+// });
 
-beforeEach(async () => {
-    let dummyTask = {
-      taskName: "hw",
-      _id: mongoose.Types.ObjectId("508f191e810c19729de860ea"),
-      listName: "today",
-      completed: false,
-    };
-    let result = new task_schema(dummyTask);
-    await result.save();
-    let dummyTask1 = {
-      taskName: "laundry",
-      _id: mongoose.Types.ObjectId("203f191e810c19729de860ea"),
-      listName: "today",
-      completed: false,
-    };
-    let result1 = new task_schema(dummyTask1);
-    await result1.save();
-    let dummyTask2 = {
-      taskName: "cleaning",
-      _id: mongoose.Types.ObjectId("101f191e810c19729de860ea"),
-      listName: "tomorrow",
-      completed: false,
-    };
-    let result2 = new task_schema(dummyTask2);
-    await result2.save();
-  });
+// beforeEach(async () => {
+//     let dummyTask = {
+//       category: "school",
+//       _id: mongoose.Types.ObjectId("508f191e810c19729de860ea"),
+//       date: "FIX",
+//       completed: false,
+//     };
+//     let result = new task_schema(dummyTask);
+//     await result.save();
+//     let dummyTask1 = {
+//       category: "laundry",
+//       _id: mongoose.Types.ObjectId("203f191e810c19729de860ea"),
+//       date: "FIX",
+//       completed: false,
+//     };
+//     let result1 = new task_schema(dummyTask1);
+//     await result1.save();
+//     let dummyTask2 = {
+//       category: "cleaning",
+//       _id: mongoose.Types.ObjectId("101f191e810c19729de860ea"),
+//       date: "FIX",
+//       completed: false,
+//     };
+//     let result2 = new task_schema(dummyTask2);
+//     await result2.save();
+//   });
   
-  afterEach(async () => {
-    await task_schema.deleteMany();
-  });
+//   afterEach(async () => {
+//     await task_schema.deleteMany();
+//   });
 
 
 // TESTS FOR TASK-SERVICES.JS
@@ -81,7 +81,7 @@ beforeEach(async () => {
 
 test("Find task by ID", async () => {
     const id = "508f191e810c19729de860ea";
-    const tasks = await taskServices.findTaskById(id);
+    const tasks = await task-services.findTaskById(id);
     expect(result).toBeDefined();
     tasks.forEach((tasks) => expect(result._id.toString()).toBe(id));
     expect(1).toBe(1);
