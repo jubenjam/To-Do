@@ -9,20 +9,20 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 // let result;
 
 // beforeAll(async () => {
-//     mongoServer = await MongoMemoryServer.create();
-//     const uri = mongoServer.getUri();
-  
-//     const mongooseOpts = {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//     };
-  
-//     conn = mongoose.createConnection(uri, mongooseOpts);
-  
-//     task_schema = conn.model("Tasks", taskSchema);
-  
-//     task-services.connect(conn);
-//   });
+//   mongoServer = await MongoMemoryServer.create();
+//   const uri = mongoServer.getUri();
+
+//   const mongooseOpts = {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   };
+
+//   conn = mongoose.createConnection(uri, mongooseOpts);
+
+//   task_schema = conn.model("Tasks", taskSchema);
+
+//   taskServices.connect(conn);
+// });
 
 // afterAll(async () => {
 //     await conn.dropDatabase();
@@ -56,11 +56,10 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 //     let result2 = new task_schema(dummyTask2);
 //     await result2.save();
 //   });
-  
+
 //   afterEach(async () => {
 //     await task_schema.deleteMany();
 //   });
-
 
 // TESTS FOR TASK-SERVICES.JS
 // test('check connection', async () => {
@@ -79,31 +78,29 @@ const { MongoMemoryServer } = require("mongodb-memory-server");
 //     taskServices.getCategoriesOfUser();
 //     });
 
-test("Find task by ID", async () => {
-    const id = "508f191e810c19729de860ea";
-    const tasks = await task-services.findTaskById(id);
-    expect(result).toBeDefined();
-    tasks.forEach((tasks) => expect(result._id.toString()).toBe(id));
-    expect(1).toBe(1);
-    });
+// test("Find task by ID", async () => {
+//   const id = "508f191e810c19729de860ea";
+//   const tasks = (await task) - services.findTaskById(id);
+//   expect(result).toBeDefined();
+//   tasks.forEach((tasks) => expect(result._id.toString()).toBe(id));
+//   expect(1).toBe(1);
+// });
 
 // test('Test -- success', () => {
 //     taskServices.deleteTaskById();
 //     });
 
 // test('Test -- success', () => {
-//     taskServices.addTask(); 
-//     });
-
-
-// test('Test -- success', () => {
-//     taskServices.editTask(); 
+//     taskServices.addTask();
 //     });
 
 // test('Test -- success', () => {
-//     taskServices.completeTask(); 
+//     taskServices.editTask();
 //     });
 
+// test('Test -- success', () => {
+//     taskServices.completeTask();
+//     });
 
 // test('Testing if user can add task to table -- success', () => {
 //     const target = "Take dogs to the vet";
@@ -113,11 +110,10 @@ test("Find task by ID", async () => {
 //     expect(target).toBe(result);
 //     });
 
-
 // TESTS FOR USER-SERVICES.JS
-// test('check connection', async () => {
-//     userServices.createConnection();
-//     });
+// test("check connection", async () => {
+//   userServices.createConnection(conn);
+// });
 
 // test('Test -- success', () => {
 //     userServices.getUsers();
@@ -127,16 +123,14 @@ test("Find task by ID", async () => {
 //     userServices.findUserById();
 //     });
 
-
 // test('Test -- success', () => {
-//     userServices.deleteUserById(); 
-//     });
-
-
-// test('Test -- success', () => {
-//     userServices.addUser(); 
+//     userServices.deleteUserById();
 //     });
 
 // test('Test -- success', () => {
-//     userServices.editUser(); 
+//     userServices.addUser();
+//     });
+
+// test('Test -- success', () => {
+//     userServices.editUser();
 //     });
