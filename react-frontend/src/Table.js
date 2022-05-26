@@ -66,6 +66,7 @@ function TableBody(props) {
           <input
             type="button"
             value="Edit"
+            // className="margin-right"
             onClick={() =>
               openPopup(row._id, row.task, date, row.category, index)
             }
@@ -95,6 +96,7 @@ function Table(props) {
         removeCharacter={props.removeCharacter}
         handleEdit={props.handleEdit}
         completeTask={props.completeTask}
+        username={props.username}
       />
     </table>
   );

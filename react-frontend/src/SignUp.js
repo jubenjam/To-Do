@@ -64,8 +64,8 @@ function SignUp(props) {
 
   const buttonStyle = {
     position: "relative",
-    left: "300px",
-    bottom: "5px"
+    left: "325px",
+    bottom: "25px"
   };
 
   //style={{color: "red"}}
@@ -98,14 +98,14 @@ function SignUp(props) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        <h8 style={inputStyle}>
+          Already have an account? <Link to="/"> Log In here</Link>
+        </h8>
         <div>
           <button type="submit" style={buttonStyle}>
             SignUp
           </button>
         </div>
-        <p style={inputStyle}>
-          Already have an account? <Link to="/"> Log In here</Link>
-        </p>
       </form>
     </div>
   );

@@ -55,6 +55,15 @@ async function findTaskById(id) {
   }
 }
 
+async function deleteCompleteByUser(user) {
+  try {
+    return await taskModel.deleteMany({ username: user, completed: true });
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
 async function deleteTaskById(id) {
   try {
     return await taskModel.findByIdAndDelete(id);
@@ -84,8 +93,23 @@ async function editTask(task, id) {
   }
 }
 
+async function sortTasks(category, username) {
+  try {
+    if (category == undefined) {
+      return await taskModel.find({ username: username }).sort({ date: 1 });
+    } else {
+      return await taskModel
+        .find({ category: category, username: username })
+        .sort({ date: 1 });
+    }
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
 async function findTasksByUsername(username) {
-  return await taskModel.find({ username: username, username: username });
+  return await taskModel.find({ username: username });
 }
 
 async function findTaskByCategory(category) {
@@ -93,7 +117,7 @@ async function findTaskByCategory(category) {
 }
 
 async function findTaskByCategoryandUsername(category, username) {
-  return await taskModel.find({ category: category });
+  return await taskModel.find({ username: username, category: category });
 }
 
 async function findTaskByDate(date) {
@@ -102,6 +126,10 @@ async function findTaskByDate(date) {
 
 async function findTaskByCategoryAndDate(category, date) {
   return await taskModel.find({ category: category, date: date });
+}
+
+async function findTaskByUserAndComplete(username, completed) {
+  return await taskModel.find({ username: username, completed: completed });
 }
 
 async function completeTask(id, completed) {
@@ -157,3 +185,5 @@ exports.editTask = editTask;
 exports.getCategories = getCategories;
 exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;
+exports.deleteCompleteByUser = deleteCompleteByUser;
+exports.sortTasks = sortTasks;
