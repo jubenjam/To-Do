@@ -144,16 +144,6 @@ app.post("/users", async (req, res) => {
   else res.status(500).end();
 });
 
-app.patch("/users/:username", async (req, res) => {
-  const newPassword = req.body;
-  const updatedUser = await userServices.changePassword(
-    req.params["username"],
-    newPassword
-  );
-  if (updatedUser) res.status(201).send(updatedUser);
-  else res.status(500).end();
-});
-
 app.get("/sort", async (req, res) => {
   try {
     const username = req.query["username"];

@@ -38,7 +38,7 @@ function ProfilePopup(props) {
           <form>
             <label htmlFor="oldPassword">Old Password</label>
             <input
-              type="text"
+              type="password"
               name="oldPassword"
               id="oldPassword"
               defaultValue={oldPassword}
@@ -47,7 +47,7 @@ function ProfilePopup(props) {
 
             <label htmlFor="newPassword">New Password</label>
             <input
-              type="text"
+              type="password"
               name="newPassword"
               id="newPassword"
               defaultValue={newPassword}
@@ -56,7 +56,7 @@ function ProfilePopup(props) {
 
             <label htmlFor="confirmedNewPassword">Confirm New Password</label>
             <input
-              type="text"
+              type="password"
               name="confirmedNewPassword"
               id="confirmedNewPassword"
               defaultValue={confirmedNewPassword}
