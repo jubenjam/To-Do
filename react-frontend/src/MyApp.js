@@ -297,6 +297,16 @@ function MyApp(props) {
 
   return (
     <div>
+      <input
+        type="button"
+        value="Change Password"
+        onClick={() => {
+          setShow(true);
+        }}
+      />
+      {show && (
+        <ProfilePopup changePassword={changePassword} setShow={setShow} />
+      )}
       <div className="topnav">
         <a href="/" className="logout">
           Logout
