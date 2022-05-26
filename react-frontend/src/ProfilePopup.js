@@ -7,12 +7,6 @@ function ProfilePopup(props) {
   const [newPassword, setNewPassword] = useState(null);
   const [confirmedNewPassword, setConfirmedNewPassword] = useState(null);
 
-  function submitForm() {
-    if (newPassword === confirmedNewPassword)
-      props.changePassword(oldPassword, newPassword);
-    else console.log("New Password Fields do not match");
-  }
-
   function handleChange(event) {
     const { name, value } = event.target;
     if (name === "oldPassword") setOldPassword(value);
@@ -21,13 +15,20 @@ function ProfilePopup(props) {
   }
 
   return (
-    <Modal show={true} onHide={props.setShow(false)}>
+    <Modal
+      show={true}
+      onHide={() => {
+        props.setShow(false);
+      }}
+    >
       <Modal.Header>
         <button
           className="close"
           data-dismiss="modal"
           aria-hidden="true"
-          onClick={props.setShow(false)}
+          onClick={() => {
+            props.setShow(false);
+          }}
         >
           ×
         </button>
@@ -65,15 +66,14 @@ function ProfilePopup(props) {
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <button
-          className="button-passwordPopup"
-          onClick={function (event) {
+        <input
+          type="button"
+          value="Change Password"
+          onClick={() => {
             props.setShow(false);
-            submitForm();
+            props.changePassword(oldPassword, newPassword);
           }}
-        >
-          Change Password
-        </button>
+        />
       </Modal.Footer>
     </Modal>
   );

@@ -190,7 +190,9 @@ function MyApp(props) {
       "http://localhost:5005/users".concat("?username=").concat(username)
     );
     console.log(response.data.user_list);
-    if (response.data.user_list.length === 1) {
+    if (response.data.user_list.length === 0) {
+      console.log("Username not found!");
+    } else if (response.data.user_list.length === 1) {
       if (oldPassword === response.data.user_list[0].password) {
         console.log("Match found!");
         console.log(username);
@@ -203,12 +205,14 @@ function MyApp(props) {
         console.log("Wrong Password");
       }
     } else {
-      console.log("Username not found!");
+      console.log("Error: Multiple users with same Username!");
     }
   }
+
   // function completeOneTask(index, complete) {
   //   completeTask(index, complete);
   // }
+
   async function removeComplete() {
     try {
       const response = await axios.delete(
@@ -297,22 +301,22 @@ function MyApp(props) {
 
   return (
     <div>
-      <input
-        type="button"
-        value="Change Password"
-        onClick={() => {
-          setShow(true);
-        }}
-      />
-      {show && (
-        <ProfilePopup changePassword={changePassword} setShow={setShow} />
-      )}
       <div className="topnav">
+        <input
+          type="button"
+          value="Profile"
+          onClick={() => {
+            setShow(true);
+          }}
+        />
         <a href="/" className="logout">
           Logout
         </a>
       </div>
       <div className="container">
+        {show && (
+          <ProfilePopup changePassword={changePassword} setShow={setShow} />
+        )}
         <Form username={username} handleSubmit={updateList} />
         <FilterDropDown
           username={username}

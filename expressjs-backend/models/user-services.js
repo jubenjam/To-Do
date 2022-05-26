@@ -114,3 +114,4 @@ exports.findUserById = findUserById;
 exports.addUser = addUser;
 exports.editUser = editUser;
 exports.matchByUsernameAndPassword = matchByUsernameAndPassword;
+exports.changePassword = changePassword;

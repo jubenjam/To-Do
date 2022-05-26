@@ -144,7 +144,7 @@ app.post("/users", async (req, res) => {
   else res.status(500).end();
 });
 
-app.post("/users/?username=:username", async (req, res) => {
+app.patch("/users/?username=:username", async (req, res) => {
   const newPassword = req.body;
   const updatedUser = await userServices.changePassword(username, newPassword);
   if (updatedUser) res.status.send(updatedUser);
