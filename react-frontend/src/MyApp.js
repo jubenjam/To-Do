@@ -192,12 +192,14 @@ function MyApp(props) {
     if (response.data.user_list.length === 0) {
       console.log("Username not found!");
     } else if (response.data.user_list.length === 1) {
-      if (oldPassword === response.data.user_list[0].password) {
+      let user = response.data.user_list[0];
+      if (oldPassword === user.password) {
         console.log("Match found!");
         console.log(username);
+        user.password = newPassword;
         response = await axios.patch(
-          "http://localhost:5005/users/".concat(username),
-          newPassword
+          "http://localhost:5005/users/".concat(user._id),
+          user
         );
       } else {
         console.log("Wrong Password");
