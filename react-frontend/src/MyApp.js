@@ -5,7 +5,6 @@ import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
 import ProfilePopup from "./ProfilePopup.js";
 import axios from "axios";
-import "./MyApp.css";
 // const checkForm = require("./CheckForm");
 
 function MyApp(props) {
@@ -187,7 +186,7 @@ function MyApp(props) {
 
   async function changePassword(oldPassword, newPassword) {
     let response = await axios.get(
-      "http://localhost:5005/users".concat("?username=").concat(username)
+      "http://localhost:5005/users/".concat("?username=").concat(username)
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 0) {
@@ -197,10 +196,9 @@ function MyApp(props) {
         console.log("Match found!");
         console.log(username);
         response = await axios.patch(
-          "http://localhost:5005/users".concat("?username=").concat(username),
+          "http://localhost:5005/users/".concat(username),
           newPassword
         );
-        routeChange();
       } else {
         console.log("Wrong Password");
       }
