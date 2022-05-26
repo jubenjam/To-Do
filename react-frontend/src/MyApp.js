@@ -191,7 +191,9 @@ function MyApp(props) {
     console.log(response.data.user_list);
     if (response.data.user_list.length === 0) {
       console.log("Username not found!");
-    } else if (response.data.user_list.length === 1) {
+    } else if (response.data.user_list.length > 1) {
+      console.log("Error: Multiple users with same Username!");
+    } else {
       let user = response.data.user_list[0];
       if (oldPassword === user.password) {
         console.log("Match found!");
@@ -204,14 +206,8 @@ function MyApp(props) {
       } else {
         console.log("Wrong Password");
       }
-    } else {
-      console.log("Error: Multiple users with same Username!");
     }
   }
-
-  // function completeOneTask(index, complete) {
-  //   completeTask(index, complete);
-  // }
 
   async function removeComplete() {
     try {
@@ -296,7 +292,6 @@ function MyApp(props) {
 
   const [category, setCategory] = useState(null);
   const [sort, setSort] = useState(false);
-
   const [show, setShow] = useState(false);
 
   return (
