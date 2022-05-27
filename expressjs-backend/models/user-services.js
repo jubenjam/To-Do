@@ -77,18 +77,6 @@ async function editUser(user, id) {
   }
 }
 
-async function changePassword(username, newPassword) {
-  try {
-    let user = await findUserByName(username);
-    const id = user._id;
-    user.password = newPassword;
-    return await editUser(user, id);
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
-
 const UserSchema = new mongoose.Schema(
   {
     username: {
@@ -113,5 +101,3 @@ exports.getUsers = getUsers;
 exports.findUserById = findUserById;
 exports.addUser = addUser;
 exports.editUser = editUser;
-exports.matchByUsernameAndPassword = matchByUsernameAndPassword;
-exports.changePassword = changePassword;
