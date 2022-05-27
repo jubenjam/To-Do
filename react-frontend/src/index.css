@@ -1243,6 +1243,21 @@ caption {
   float: right;
 }
 
+.LogoutButton {
+  background: #00000000;
+  border: 1px solid #00000000;
+  color: #ffffff;
+  display: block;
+  float: right;
+}
+
+.Error {
+  padding: 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #1a535c;
@@ -1257,12 +1272,12 @@ caption {
   font-size: 17px;
 }
 
-.logout:hover {
+.LogoutButton:hover {
   background-color: #ddd;
   color: #333;
 }
 
-.logout:active {
+.LogoutButton:active {
   background-color: #04aa6d;
   color: white;
 }
