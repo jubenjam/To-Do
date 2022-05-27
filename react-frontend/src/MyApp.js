@@ -77,7 +77,7 @@ function MyApp(props) {
       if (sort === true) {
         sortList(username, category);
       } else {
-        setTasksbyCategoryWithoutSort(username, category)
+        setTasksbyCategoryWithoutSort(username, category);
       }
     } catch (error) {
       console.log(error);
@@ -223,8 +223,6 @@ function MyApp(props) {
 
   async function setTasksbyCategoryWithoutSort(username, category) {
     try {
-      console.log("remove");
-      console.log(username);
       if ((category == null) | (category === "All")) {
         const response = await axios.get(
           "http://localhost:5005/tasks/?username=".concat(username)
@@ -269,7 +267,7 @@ function MyApp(props) {
           type="button"
           value="Delete Completed Tasks"
           onClick={removeAll}
-          className = "delete-completed-button"
+          className="delete-completed-button"
         />
         {sort && (
           <button
