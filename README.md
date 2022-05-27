@@ -1,17 +1,22 @@
 # TaskTime
 
+# CI
 Backend:[![Node.js CI](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml)<br/>
-Frontend:[![Node.js CI](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml)
+Frontend:[![Node.js CI](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml)<br/>
+Backend: https://github.com/jubenjam/expressjs-backend/actions<br/>
+Frontend: https://github.com/jubenjam/react-frontend/actions<br/>
+Backend CD: https://task-time-csc307.herokuapp.com/
 
 # Project Blurb
+Task Time is a to-do list website that allows you to organize and prioritize your daily tasks. Each user can create tasks, assign them a category, and select a date to complete the task by. The tasks can be sorted by date, allowing users to prioritize closer deadlines. Useres can also filter based on the categories they created, allowing those with extremely busy lives to find what they have to do with ease.
 
 # UI Prototype
-https://www.figma.com/proto/GzNI1ebsantKEFbFjzt6nE/Task-Time?node-id=1%3A12&starting-point-node-id=1%3A12
+https://www.figma.com/proto/GzNI1ebsantKEFbFjzt6nE/Task-Time?node-id=1%3A12&starting-point-node-id=1%3A12<br/>
 Last Updated: April 25
 
 # Diagrams
-Use Case Diagram:
-Class Diagram:
+Use Case Diagram: https://github.com/jubenjam/To-Do/wiki/Use-Case-Diagram<br/>
+Class Diagram: https://github.com/jubenjam/To-Do/wiki/Class-Diagram
 
 # Development environment set up
 
