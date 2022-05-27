@@ -46,7 +46,7 @@ function Form(props) {
     });
   }
   return (
-    <form>
+    <form className="form-padding">
       <tr>
         <td>
           <label htmlFor="task">Task</label>

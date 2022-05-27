@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function LogIn(props) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState(false);
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -27,9 +28,11 @@ function LogIn(props) {
         routeChange();
       } else {
         console.log("Wrong Password");
+        setError(true);
       }
     } else {
       console.log("Username not found!");
+      setError(true);
     }
   }
 
@@ -64,6 +67,7 @@ function LogIn(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
+            className={!error ? '' : "error"}
           />
         </label>
         <label>
@@ -72,8 +76,14 @@ function LogIn(props) {
             type="password"
             style={inputStyle}
             onChange={(e) => setPassword(e.target.value)}
+            className={!error ? '' : "error"}
           />
         </label>
+        {error && (
+          <p style={inputStyle} className="error_msg">
+            Username or password incorrect. Please try again.
+          </p>
+        )}
         <h8 style={inputStyle}>
           Don&apos;t have an account yet? <Link to="SignUp">Sign Up here</Link>
         </h8>

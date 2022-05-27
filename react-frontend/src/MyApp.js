@@ -77,26 +77,7 @@ function MyApp(props) {
       if (sort === true) {
         sortList(username, category);
       } else {
-        if ((category == null) | (category === "All")) {
-          const response = await axios.get(
-            "http://localhost:5005/tasks/?username=".concat(username)
-          );
-          setCharacters(response.data.task_list);
-        } else {
-          console.log(
-            "http://localhost:5005/tasks/?username="
-              .concat(username)
-              .concat("&category=")
-              .concat(category)
-          );
-          const response = await axios.get(
-            "http://localhost:5005/tasks/?username="
-              .concat(username)
-              .concat("&category=")
-              .concat(category)
-          );
-          setCharacters(response.data.task_list);
-        }
+        setTasksbyCategoryWithoutSort(username, category)
       }
     } catch (error) {
       console.log(error);
@@ -240,7 +221,7 @@ function MyApp(props) {
     });
   }
 
-  async function removeSort(username, category) {
+  async function setTasksbyCategoryWithoutSort(username, category) {
     try {
       console.log("remove");
       console.log(username);
@@ -288,13 +269,14 @@ function MyApp(props) {
           type="button"
           value="Delete Completed Tasks"
           onClick={removeAll}
+          className = "delete-completed-button"
         />
         {sort && (
           <button
             className="sort-button2"
             onClick={() => {
               setSort(false);
-              removeSort(username, category);
+              setTasksbyCategoryWithoutSort(username, category);
             }}
           >
             Remove Sort
