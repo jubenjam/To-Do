@@ -1251,6 +1251,13 @@ caption {
   float: right;
 }
 
+.Error {
+  padding: 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #1a535c;
