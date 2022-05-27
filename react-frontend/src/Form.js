@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function Form(props) {
+  const [error, setError] = useState(false);
   const [task, setTask] = useState({
     task: "",
     date: "",
@@ -36,17 +37,26 @@ function Form(props) {
       });
   }
   function submitForm() {
-    props.handleSubmit(task);
-    setTask({
-      task: "",
-      date: "",
-      category: "",
-      completed: false,
-      username: props.username
-    });
+    if (!task.task || !task.date || !task.category) {
+      setError(true);
+      document.getElementById("task").value = task.task;
+      document.getElementById("date").value = task.date;
+      document.getElementById("category").value = task.category;
+    }
+    else {
+      setError(false);
+      props.handleSubmit(task);
+      setTask({
+        task: "",
+        date: "",
+        category: "",
+        completed: false,
+        username: props.username
+      });
+    }
   }
   return (
-    <form>
+    <form className="form-padding">
       <tr>
         <td>
           <label htmlFor="task">Task</label>
@@ -56,6 +66,7 @@ function Form(props) {
             id="task"
             value={task.task}
             onChange={handleChange}
+            className={!error ? '' : "error"}
           />
         </td>
         <td>
@@ -66,6 +77,7 @@ function Form(props) {
             id="date"
             value={task.date}
             onChange={handleChange}
+            className={!error ? '' : "error"}
           />
         </td>
         <td>
@@ -76,6 +88,7 @@ function Form(props) {
             id="category"
             value={task.category}
             onChange={handleChange}
+            className={!error ? '' : "error"}
           />
         </td>
         <td>
@@ -83,6 +96,7 @@ function Form(props) {
           <input type="button" value="Submit" onClick={submitForm} />
         </td>
       </tr>
+      {error && <p className="error_msg">Please fill in the blank fields.</p>}
     </form>
   );
 }
