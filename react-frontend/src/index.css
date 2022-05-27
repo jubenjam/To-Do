@@ -1304,6 +1304,8 @@ code {
         white-space: normal;
         max-width: 250px;
         table-layout: fixed;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
     
     thead>tr>:nth-child(2) {
@@ -1312,14 +1314,10 @@ code {
     
     tbody>tr>:nth-child(4) {
         white-space: normal;
-        max-width: 80px;
-        table-layout: fixed;
-    }
-    
-    tbody>tr>:nth-child(4) {
-        white-space: normal;
         max-width: 120px;
         table-layout: fixed;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
     
     thead>tr>:nth-child(4) {
