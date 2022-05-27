@@ -3,17 +3,17 @@
 Backend:[![Node.js CI](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/expressjs-backend/actions/workflows/node.js.yml)<br/>
 Frontend:[![Node.js CI](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml/badge.svg)](https://github.com/jubenjam/react-frontend/actions/workflows/node.js.yml)
 
-#Project Blurb
+# Project Blurb
 
-#UI Prototype
+# UI Prototype
 https://www.figma.com/proto/GzNI1ebsantKEFbFjzt6nE/Task-Time?node-id=1%3A12&starting-point-node-id=1%3A12
 Last Updated: April 25
 
-#Diagrams
+# Diagrams
 Use Case Diagram:
 Class Diagram:
 
-#Development environment set up
+# Development environment set up
 
 Use ESLint and Prettier extensions on vscode (separate extensions)
 
