@@ -10,6 +10,8 @@ function MyApp(props) {
   const [characters, setCharacters] = useState([]);
   const [username] = useState(props.username);
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState(null);
+  const [sort, setSort] = useState(false);
 
   useEffect(() => {
     fetchAll().then((result) => {
@@ -18,7 +20,7 @@ function MyApp(props) {
   }, []);
 
   useEffect(() => {
-    fetchCategoriesofUser().then((result) => {
+    fetchCategoriesofUser(username).then((result) => {
       if (result) setCategories(result);
     });
   }, []);
@@ -34,6 +36,7 @@ function MyApp(props) {
           document.getElementById("c" + i).checked = updated[i].completed;
         }
       }
+      resetCategoriesOfUser(username);
     });
   }
 
@@ -104,12 +107,11 @@ function MyApp(props) {
     }
   }
 
-  async function fetchCategoriesofUser() {
+  async function fetchCategoriesofUser(username) {
     try {
       const response = await axios.get(
         "http://localhost:5005/categories/?username=".concat(username)
       );
-      console.log("here");
       console.log(
         "http://localhost:5005/categories/?username=".concat(username)
       );
@@ -121,6 +123,10 @@ function MyApp(props) {
     }
   }
 
+  function resetCategoriesOfUser(username) {
+    fetchCategoriesofUser(username).then((token) => setCategories(token));
+  }
+
   function updateList(person) {
     console.log(person);
     makePostCall(person).then((result) => {
@@ -129,6 +135,7 @@ function MyApp(props) {
           sortList(username, category);
         }
         setCharacters([...characters, result.data]);
+        resetCategoriesOfUser(username);
       }
     });
   }
@@ -228,6 +235,7 @@ function MyApp(props) {
           document.getElementById("c" + i).checked = updated[i].completed;
         }
       }
+      resetCategoriesOfUser(username);
     });
   }
 
@@ -264,9 +272,6 @@ function MyApp(props) {
     }
   }
 
-  const [category, setCategory] = useState(null);
-  const [sort, setSort] = useState(false);
-
   return (
     <div>
       <div className="topnav">
@@ -275,13 +280,15 @@ function MyApp(props) {
         </a>
       </div>
       <div className="container">
-        <Form username={username} handleSubmit={updateList} />
+        <Form
+          username={username}
+          handleSubmit={updateList}
+          resetCategoriesOfUser={resetCategoriesOfUser}
+        />
         <FilterDropDown
           username={username}
-          characterData={characters}
           categories={categories}
           setCategory={setCategory}
-          category={category}
           setTasksbyCategoryandUserName={setTasksbyCategoryandUserName}
         />
         <input
