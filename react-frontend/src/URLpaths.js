@@ -17,6 +17,7 @@ function URLpaths() {
             element={<SignUp setUserName={setUserName} />}
           />
           <Route path="/tasks" element={<MyApp username={username} />} />
+          <Route path="*" element={<p>There&apos;s nothing here: 404!</p>} />
         </Routes>
       </div>
     </Router>

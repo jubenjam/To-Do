@@ -13,6 +13,12 @@ function LogIn(props) {
     navigate(path);
   };
 
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    props.setUserName(loggedInUser);
+    routeChange();
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.get(
@@ -24,6 +30,7 @@ function LogIn(props) {
         console.log("Match found!");
         console.log(username);
         props.setUserName(username);
+        localStorage.setItem("user", username);
         routeChange();
       } else {
         console.log("Wrong Password");

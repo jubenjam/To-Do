@@ -4,7 +4,7 @@ import Table from "./Table";
 import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
 import axios from "axios";
-// const checkForm = require("./CheckForm");
+import { Navigate, useNavigate } from "react-router-dom";
 
 function MyApp(props) {
   const [characters, setCharacters] = useState([]);
@@ -22,6 +22,12 @@ function MyApp(props) {
       if (result) setCategories(result);
     });
   }, []);
+
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/`;
+    navigate(path);
+  };
 
   function removeOneCharacter(index) {
     removeUser(index).then((result) => {
@@ -267,12 +273,21 @@ function MyApp(props) {
   const [category, setCategory] = useState(null);
   const [sort, setSort] = useState(false);
 
+  if (!props.username) {
+    return <Navigate to="/" replace />;
+  }
+
+  function Logout() {
+    localStorage.clear();
+    routeChange();
+  }
+
   return (
     <div>
       <div className="topnav">
-        <a href="/" className="logout">
+        <button className="LogoutButton" onClick={Logout}>
           Logout
-        </a>
+        </button>
       </div>
       <div className="container">
         <Form username={username} handleSubmit={updateList} />

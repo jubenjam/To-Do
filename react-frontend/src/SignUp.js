@@ -14,6 +14,12 @@ function SignUp(props) {
     navigate(path);
   };
 
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    props.setUserName(loggedInUser);
+    routeChange();
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.get(
@@ -35,6 +41,7 @@ function SignUp(props) {
       console.log(person);
       addNewUser(person);
       props.setUserName(username);
+      localStorage.setItem("user", username);
       routeChange();
     }
   }
