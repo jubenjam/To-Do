@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Table from "./Table";
 import Form from "./Form";
 import FilterDropDown from "./FilterDropDown";
+import ProfilePopup from "./ProfilePopup.js";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -12,6 +13,7 @@ function MyApp(props) {
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState(null);
   const [sort, setSort] = useState(false);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     fetchAll().then((result) => {
@@ -196,6 +198,31 @@ function MyApp(props) {
     }
   }
 
+  async function changePassword(oldPassword, newPassword) {
+    let response = await axios.get(
+      "http://localhost:5005/users/".concat("?username=").concat(username)
+    );
+    console.log(response.data.user_list);
+    if (response.data.user_list.length === 0) {
+      console.log("Username not found!");
+    } else if (response.data.user_list.length > 1) {
+      console.log("Error: Multiple users with same Username!");
+    } else {
+      let user = response.data.user_list[0];
+      if (oldPassword === user.password) {
+        console.log("Match found!");
+        console.log(username);
+        user.password = newPassword;
+        response = await axios.patch(
+          "http://localhost:5005/users/".concat(user._id),
+          user
+        );
+      } else {
+        console.log("Wrong Password");
+      }
+    }
+  }
+
   async function removeComplete() {
     try {
       const response = await axios.delete(
@@ -290,11 +317,21 @@ function MyApp(props) {
   return (
     <div>
       <div className="topnav">
+        <input
+          type="button"
+          value="Profile"
+          onClick={() => {
+            setShow(true);
+          }}
+        />
         <button className="LogoutButton" onClick={Logout}>
           Logout
         </button>
       </div>
       <div className="container">
+        {show && (
+          <ProfilePopup changePassword={changePassword} setShow={setShow} />
+        )}
         <Form
           username={username}
           handleSubmit={updateList}
