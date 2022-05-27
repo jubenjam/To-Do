@@ -1270,6 +1270,14 @@ caption {
   float: right;
 }
 
+.PasswordButton:not(:active) {
+  background: #00000000;
+  border: 1px solid #00000000;
+  color: #ffffff;
+  display: block;
+  float: left;
+}
+
 .Error {
   padding: 50px;
   text-align: center;
@@ -1297,6 +1305,16 @@ caption {
 }
 
 .LogoutButton:active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.PasswordButton:hover {
+  background-color: #ddd;
+  color: #333;
+}
+
+.PasswordButton:active {
   background-color: #04aa6d;
   color: white;
 }

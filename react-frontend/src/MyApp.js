@@ -298,7 +298,8 @@ function MyApp(props) {
       <div className="topnav">
         <input
           type="button"
-          value="Profile"
+          className="PasswordButton"
+          value="Change Password"
           onClick={() => {
             setShow(true);
           }}
