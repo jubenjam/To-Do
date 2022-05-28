@@ -51,7 +51,9 @@ function MyApp(props) {
   async function removeUser(index) {
     try {
       const response = await axios.delete(
-        "http://localhost:5005/tasks/".concat(characters[index]["_id"])
+        "https://task-time-csc307.herokuapp.com/tasks/".concat(
+          characters[index]["_id"]
+        )
       );
       return response;
     } catch (error) {
@@ -63,7 +65,9 @@ function MyApp(props) {
   async function fetchAll() {
     try {
       const response = await axios.get(
-        "http://localhost:5005/tasks/?username=".concat(username)
+        "https://task-time-csc307.herokuapp.com/tasks/?username=".concat(
+          username
+        )
       );
       return response.data.task_list;
     } catch (error) {
@@ -75,7 +79,10 @@ function MyApp(props) {
 
   async function makePostCall(person) {
     try {
-      const response = await axios.post("http://localhost:5005/tasks", person);
+      const response = await axios.post(
+        "https://task-time-csc307.herokuapp.com/tasks",
+        person
+      );
       return response;
     } catch (error) {
       console.log(error);
@@ -99,10 +106,14 @@ function MyApp(props) {
   async function fetchCategoriesofUser(username) {
     try {
       const response = await axios.get(
-        "http://localhost:5005/categories/?username=".concat(username)
+        "https://task-time-csc307.herokuapp.com/categories/?username=".concat(
+          username
+        )
       );
       console.log(
-        "http://localhost:5005/categories/?username=".concat(username)
+        "https://task-time-csc307.herokuapp.com/categories/?username=".concat(
+          username
+        )
       );
       console.log(response.data.category_list);
       return response.data.category_list;
@@ -132,7 +143,9 @@ function MyApp(props) {
   async function makePatchCall(person, index) {
     try {
       const response = await axios.patch(
-        "http://localhost:5005/tasks/".concat(characters[index]["_id"]),
+        "https://task-time-csc307.herokuapp.com/tasks/".concat(
+          characters[index]["_id"]
+        ),
         person
       );
       return response;
@@ -169,7 +182,9 @@ function MyApp(props) {
     try {
       complete.completed = !complete.completed;
       const response = await axios.patch(
-        "http://localhost:5005/tasks/".concat(characters[index]["_id"]),
+        "https://task-time-csc307.herokuapp.com/tasks/".concat(
+          characters[index]["_id"]
+        ),
         complete
       );
       return response;
@@ -181,7 +196,9 @@ function MyApp(props) {
 
   async function changePassword(oldPassword, newPassword) {
     let response = await axios.get(
-      "http://localhost:5005/users/".concat("?username=").concat(username)
+      "https://task-time-csc307.herokuapp.com/users/"
+        .concat("?username=")
+        .concat(username)
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 0) {
@@ -195,7 +212,7 @@ function MyApp(props) {
         console.log(username);
         user.password = newPassword;
         response = await axios.patch(
-          "http://localhost:5005/users/".concat(user._id),
+          "https://task-time-csc307.herokuapp.com/users/".concat(user._id),
           user
         );
       } else {
@@ -207,7 +224,9 @@ function MyApp(props) {
   async function removeComplete() {
     try {
       const response = await axios.delete(
-        "http://localhost:5005/tasks/?username=".concat(username)
+        "https://task-time-csc307.herokuapp.com/tasks/?username=".concat(
+          username
+        )
       );
       return response;
     } catch (error) {
@@ -221,11 +240,13 @@ function MyApp(props) {
     try {
       if ((category == null) | (category === "All")) {
         response = await axios.get(
-          "http://localhost:5005/sort?username=".concat(username)
+          "https://task-time-csc307.herokuapp.com/sort?username=".concat(
+            username
+          )
         );
       } else {
         response = await axios.get(
-          "http://localhost:5005/sort?category="
+          "https://task-time-csc307.herokuapp.com/sort?category="
             .concat(category)
             .concat("&username=")
             .concat(username)
@@ -266,12 +287,14 @@ function MyApp(props) {
     try {
       if ((category == null) | (category === "All")) {
         const response = await axios.get(
-          "http://localhost:5005/tasks/?username=".concat(username)
+          "https://task-time-csc307.herokuapp.com/tasks/?username=".concat(
+            username
+          )
         );
         setCharacters(response.data.task_list);
       } else {
         const response = await axios.get(
-          "http://localhost:5005/tasks/?username="
+          "https://task-time-csc307.herokuapp.com/tasks/?username="
             .concat(username)
             .concat("&category=")
             .concat(category)

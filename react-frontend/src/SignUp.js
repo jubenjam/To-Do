@@ -24,7 +24,9 @@ function SignUp(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.get(
-      "http://localhost:5005/users".concat("?username=").concat(username)
+      "https://task-time-csc307.herokuapp.com/users"
+        .concat("?username=")
+        .concat(username)
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 1) {
@@ -42,7 +44,10 @@ function SignUp(props) {
 
   async function addNewUser(person) {
     try {
-      const response = await axios.post("http://localhost:5005/users", person);
+      const response = await axios.post(
+        "https://task-time-csc307.herokuapp.com/users",
+        person
+      );
       return response;
     } catch (error) {
       console.log(error);
@@ -89,10 +94,14 @@ function SignUp(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
-        {error && <p style = {inputStyle} className = "error_msg">Username already exists. Please choose another one.</p>}
+        {error && (
+          <p style={inputStyle} className="error_msg">
+            Username already exists. Please choose another one.
+          </p>
+        )}
         <label>
           <p style={inputStyle}>Password</p>
           <input

@@ -23,7 +23,9 @@ function LogIn(props) {
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await axios.get(
-      "http://localhost:5005/users".concat("?username=").concat(username)
+      "https://task-time-csc307.herokuapp.com/users"
+        .concat("?username=")
+        .concat(username)
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 1) {
@@ -74,7 +76,7 @@ function LogIn(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
         <label>
@@ -83,7 +85,7 @@ function LogIn(props) {
             type="password"
             style={inputStyle}
             onChange={(e) => setPassword(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
         {error && (
