@@ -74,7 +74,7 @@ function LogIn(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
         <label>
@@ -83,7 +83,7 @@ function LogIn(props) {
             type="password"
             style={inputStyle}
             onChange={(e) => setPassword(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
         {error && (

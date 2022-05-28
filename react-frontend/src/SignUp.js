@@ -89,10 +89,14 @@ function SignUp(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </label>
-        {error && <p style = {inputStyle} className = "error_msg">Username already exists. Please choose another one.</p>}
+        {error && (
+          <p style={inputStyle} className="error_msg">
+            Username already exists. Please choose another one.
+          </p>
+        )}
         <label>
           <p style={inputStyle}>Password</p>
           <input

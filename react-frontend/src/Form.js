@@ -42,8 +42,7 @@ function Form(props) {
       document.getElementById("task").value = task.task;
       document.getElementById("date").value = task.date;
       document.getElementById("category").value = task.category;
-    }
-    else {
+    } else {
       setError(false);
       props.handleSubmit(task);
       setTask({
@@ -66,7 +65,7 @@ function Form(props) {
             id="task"
             value={task.task}
             onChange={handleChange}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </td>
         <td>
@@ -77,7 +76,7 @@ function Form(props) {
             id="date"
             value={task.date}
             onChange={handleChange}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </td>
         <td>
@@ -88,7 +87,7 @@ function Form(props) {
             id="category"
             value={task.category}
             onChange={handleChange}
-            className={!error ? '' : "error"}
+            className={!error ? "" : "error"}
           />
         </td>
         <td>
