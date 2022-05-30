@@ -8,7 +8,7 @@ Frontend: https://github.com/jubenjam/react-frontend/actions<br/>
 Backend CD: https://task-time-csc307.herokuapp.com/
 
 # Project Blurb
-Task Time is a to-do list website that allows you to organize and prioritize your daily tasks. Each user can create tasks, assign them a category, and select a date to complete the task by. The tasks can be sorted by date, allowing users to prioritize closer deadlines. Useres can also filter based on the categories they created, allowing those with extremely busy lives to find what they have to do with ease.
+Task Time is a to-do list website that allows you to organize and prioritize your daily tasks. Each user can create tasks, assign them a category, and select a date to complete the task by. The tasks can be sorted by date, allowing users to prioritize closer deadlines. Users can also filter based on the categories they created, allowing those with extremely busy lives to find what they have to do with ease.
 
 # UI Prototype
 https://www.figma.com/proto/GzNI1ebsantKEFbFjzt6nE/Task-Time?node-id=1%3A12&starting-point-node-id=1%3A12<br/>
@@ -36,3 +36,9 @@ You may need to:<br/>
 npm install eslint
 
 .prettierrc and .eslint.json will have all formatting rules
+
+Install the following in the frontend:<br/>
+npm install axios bootstrap react-bootstrap react-router-dom
+
+Install the following in the backend:<br/>
+npm install mongoose
