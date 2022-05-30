@@ -40,9 +40,7 @@ function MyApp(props) {
           return i !== index;
         });
         setCharacters(updated);
-        for (let i = 0; i < updated.length; i++) {
-          document.getElementById("c" + i).checked = updated[i].completed;
-        }
+        updateCheckboxes(updated);
       }
       resetCategoriesOfUser(username);
     });
@@ -125,6 +123,7 @@ function MyApp(props) {
         }
         setCharacters([...characters, result.data]);
         resetCategoriesOfUser(username);
+        updateCheckboxes(characters);
       }
     });
   }
@@ -151,6 +150,7 @@ function MyApp(props) {
         let newChar = [...characters];
         newChar[index] = person;
         setCharacters(newChar);
+        updateCheckboxes(characters);
       }
     });
   }
@@ -161,6 +161,7 @@ function MyApp(props) {
         let newChar = [...characters];
         newChar[index]["completed"] = !newChar[index]["completed"];
         setCharacters(newChar);
+        updateCheckboxes(charactes);
       }
     });
   }
@@ -245,12 +246,16 @@ function MyApp(props) {
           (character) => character.completed !== true
         );
         setCharacters(updated);
-        for (let i = 0; i < updated.length; i++) {
-          document.getElementById("c" + i).checked = updated[i].completed;
-        }
+        updateCheckboxes(updated);
       }
       resetCategoriesOfUser(username);
     });
+  }
+
+  function updateCheckboxes(updated) {
+    for (let i = 0; i < updated.length; i++) {
+      document.getElementById("c" + i).checked = updated[i].completed;
+    }
   }
 
   function sortList(username, category) {
@@ -258,6 +263,7 @@ function MyApp(props) {
     makeSortCall(username, category).then((result) => {
       if (result && result.status === 200) {
         setCharacters(result.data.task_list);
+        updateCheckboxes(result.data.task_list);
       }
     });
   }
@@ -269,6 +275,7 @@ function MyApp(props) {
           "http://localhost:5005/tasks/?username=".concat(username)
         );
         setCharacters(response.data.task_list);
+        updateCheckboxes(response.data.task_list);
       } else {
         const response = await axios.get(
           "http://localhost:5005/tasks/?username="
@@ -277,6 +284,7 @@ function MyApp(props) {
             .concat(category)
         );
         setCharacters(response.data.task_list);
+        updateCheckboxes(response.data.task_list);
       }
     } catch (error) {
       console.log(error);
