@@ -74,6 +74,16 @@ app.delete("/tasks/:id", async (req, res) => {
   }
 });
 
+app.delete("/tasks", async (req, res) => {
+  const user = req.query["username"];
+  const result = await taskServices.deleteCompleteByUser(user);
+  if (result === undefined || result === null)
+    res.status(404).send("Resource not found.");
+  else {
+    res.status(204).end();
+  }
+});
+
 app.patch("/tasks/:id", async (req, res) => {
   const id = req.params["id"];
   const result = await taskServices.editTask(req.body, id);
@@ -132,4 +142,16 @@ app.post("/users", async (req, res) => {
   const savedUser = await userServices.addUser(user);
   if (savedUser) res.status(201).send(savedUser);
   else res.status(500).end();
+});
+
+app.get("/sort", async (req, res) => {
+  try {
+    const username = req.query["username"];
+    const category = req.query["category"];
+    const result = await taskServices.sortTasks(category, username);
+    res.send({ task_list: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
 });

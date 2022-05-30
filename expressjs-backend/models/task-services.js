@@ -55,6 +55,10 @@ async function findTaskById(id) {
   }
 }
 
+async function deleteCompleteByUser(user) {
+  return await taskModel.deleteMany({ username: user, completed: true });
+}
+
 async function deleteTaskById(id) {
   try {
     return await taskModel.findByIdAndDelete(id);
@@ -84,16 +88,22 @@ async function editTask(task, id) {
   }
 }
 
-async function findTasksByUsername(username) {
-  return await taskModel.find({ username: username, username: username });
+async function sortTasks(category, username) {
+  if (category == undefined) {
+    return await taskModel.find({ username: username }).sort({ date: 1 });
+  } else {
+    return await taskModel
+      .find({ category: category, username: username })
+      .sort({ date: 1 });
+  }
 }
 
-async function findTaskByCategory(category) {
-  return await taskModel.find({ category: category });
+async function findTasksByUsername(username) {
+  return await taskModel.find({ username: username });
 }
 
 async function findTaskByCategoryandUsername(category, username) {
-  return await taskModel.find({ category: category });
+  return await taskModel.find({ username: username, category: category });
 }
 
 async function findTaskByDate(date) {
@@ -112,7 +122,7 @@ async function completeTask(id, completed) {
     );
   } catch (error) {
     console.log(error);
-    return false;
+    return undefined;
   }
 }
 
@@ -157,3 +167,5 @@ exports.editTask = editTask;
 exports.getCategories = getCategories;
 exports.getCategoriesOfUser = getCategoriesOfUser;
 exports.completeTask = completeTask;
+exports.deleteCompleteByUser = deleteCompleteByUser;
+exports.sortTasks = sortTasks;

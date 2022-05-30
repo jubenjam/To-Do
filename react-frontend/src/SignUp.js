@@ -7,12 +7,19 @@ function SignUp(props) {
   const [email, setEmail] = useState();
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const [error, setError] = useState();
 
   let navigate = useNavigate();
   const routeChange = () => {
     let path = `/tasks`;
     navigate(path);
   };
+
+  const loggedInUser = localStorage.getItem("user");
+  if (loggedInUser) {
+    props.setUserName(loggedInUser);
+    routeChange();
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -21,20 +28,14 @@ function SignUp(props) {
     );
     console.log(response.data.user_list);
     if (response.data.user_list.length === 1) {
-      if (password === response.data.user_list[0].password) {
-        console.log("Match found!");
-        // console.log(username);
-        // props.setUserName(username);
-        // routeChange();
-      } else {
-        console.log("Wrong Password");
-      }
+      setError(true);
     } else {
       console.log("Username not found!");
       const person = { username: username, password: password, email: email };
       console.log(person);
       addNewUser(person);
       props.setUserName(username);
+      localStorage.setItem("user", username);
       routeChange();
     }
   }
@@ -88,8 +89,14 @@ function SignUp(props) {
             type="text"
             style={inputStyle}
             onChange={(e) => setUserName(e.target.value)}
+            className={!error ? "" : "error"}
           />
         </label>
+        {error && (
+          <p style={inputStyle} className="error_msg">
+            Username already exists. Please choose another one.
+          </p>
+        )}
         <label>
           <p style={inputStyle}>Password</p>
           <input

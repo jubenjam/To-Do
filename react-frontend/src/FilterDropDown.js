@@ -10,13 +10,15 @@ function FilterDropDown(props) {
     console.log(props.categories);
     console.log(e.target.text);
     console.log(typeof e.target.text);
+    props.setCategory(e.target.text);
     props.setTasksbyCategoryandUserName(e.target.text, props.username);
   };
 
   return (
-    <DropdownButton
-      id="dropdown-basic-button"
+    <Button
+      id="-basic-button"
       title="Category Filter"
+      className="inline-block"
       onSelect={handleSelect}
     >
       <Dropdown.Item key="None">All</Dropdown.Item>

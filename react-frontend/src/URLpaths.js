@@ -17,6 +17,10 @@ function URLpaths() {
             element={<SignUp setUserName={setUserName} />}
           />
           <Route path="/tasks" element={<MyApp username={username} />} />
+          <Route
+            path="*"
+            element={<p className="Error">Error 404: Page not found.</p>}
+          />
         </Routes>
       </div>
     </Router>
