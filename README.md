@@ -6,7 +6,7 @@ Frontend:[![Node.js CI](https://github.com/jubenjam/react-frontend/actions/workf
 Backend: https://github.com/jubenjam/expressjs-backend/actions<br/>
 Frontend: https://github.com/jubenjam/react-frontend/actions<br/>
 Backend CD: https://task-time-csc307.herokuapp.com/<br/>
-[[https://github.com/jubenjam/To-Do/blob/main/Docs/Tests.png]]
+[TestCoverage](https://github.com/jubenjam/To-Do/blob/main/Docs/Tests.png)
 
 # Project Blurb
 Task Time is a to-do list website that allows you to organize and prioritize your daily tasks. Each user can create tasks, assign them a category, and select a date to complete the task by. The tasks can be sorted by date, allowing users to prioritize closer deadlines. Users can also filter based on the categories they created, allowing those with extremely busy lives to find what they have to do with ease.
